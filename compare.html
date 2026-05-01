@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Styles — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--surface:#17171F;--border:rgba(255,255,255,.08);--text:#E6E6F0;--muted:#8A8AA3;--accent:#FF6B2C;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+h1,h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.mono{font-family:'Space Grotesk',sans-serif}
+.wrap{max-width:1400px;margin:0 auto;padding:50px 24px}
+.head{text-align:center;margin-bottom:50px}
+.kicker{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);background:rgba(255,107,44,.1);border:1px solid rgba(255,107,44,.25);padding:6px 14px;border-radius:100px}
+h1{font-size:clamp(2.2rem,4.5vw,3.6rem);margin-top:18px}
+h1 .grad{background:linear-gradient(135deg,#FF6B2C,#B44CFF 60%,#00E5FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);max-width:640px;margin:16px auto 0;font-size:1.05rem;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:22px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:22px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .3s,border-color .3s;display:flex;flex-direction:column}
+.tile:hover{transform:translateY(-6px);border-color:rgba(255,107,44,.4)}
+.preview{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.preview iframe{width:200%;height:200%;transform:scale(.5);transform-origin:0 0;border:0;pointer-events:none}
+.meta{padding:22px}
+.badge{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--muted);margin-bottom:10px}
+.tile h2{font-size:1.4rem}
+.tile p{color:var(--muted);font-size:.9rem;margin-top:8px;line-height:1.55}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tag{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text)}
+.cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.88rem;color:var(--accent)}
+.foot{text-align:center;margin-top:50px;color:var(--muted);font-size:.88rem}
+</style>
+</head><body>
+<div class="wrap">
+  <div class="head">
+    <span class="kicker">Pick One — Then We Build The Full Site</span>
+    <h1>Eight directions for <span class="grad">Mahesh Electronics</span>.</h1>
+    <p class="sub">Same business, same story — eight different visual languages inspired by Apple, Nike, Epson, Sony, NYT and more. Click a tile to open the live demo. Each feels different on the eyes, for a different kind of customer.</p>
+  </div>
+
+  <div class="grid">
+    <a href="styles/1-tech-og.html" class="tile">
+      <div class="preview"><iframe src="styles/1-tech-og.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">01 · Recommended</span>
+        <h2>Tech OG</h2>
+        <p>Dark mode, neon glows, bento grid. Feels like Linear × Notion × Apple. Tech-forward but institutional-friendly.</p>
+        <div class="tags"><span class="tag">Dark</span><span class="tag">Bento</span><span class="tag">Neon</span><span class="tag">Gen-Z</span><span class="tag">Pro</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/2-street-drop.html" class="tile">
+      <div class="preview"><iframe src="styles/2-street-drop.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">02 · Bold</span>
+        <h2>Street Drop</h2>
+        <p>Supreme × Nike SNKRS. Huge type, black + white + orange, drop culture. Maximum impact with young buyers.</p>
+        <div class="tags"><span class="tag">Bold Type</span><span class="tag">Drops</span><span class="tag">Orange</span><span class="tag">Youth</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/3-editorial.html" class="tile">
+      <div class="preview"><iframe src="styles/3-editorial.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">03 · Heritage</span>
+        <h2>Editorial</h2>
+        <p>NYT × Stripe. Serif, long-form, warm paper tones. Best for telling the 40-year story and winning government trust.</p>
+        <div class="tags"><span class="tag">Serif</span><span class="tag">Paper</span><span class="tag">Trust</span><span class="tag">Govt</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/4-glass.html" class="tile">
+      <div class="preview"><iframe src="styles/4-glass.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">04 · Premium</span>
+        <h2>Premium Glass</h2>
+        <p>Apple vibe. Frosted glass cards, pastel mesh gradients, calm typography. Feels high-end and approachable.</p>
+        <div class="tags"><span class="tag">Glass</span><span class="tag">Pastel</span><span class="tag">Apple</span><span class="tag">Calm</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/5-retro.html" class="tile">
+      <div class="preview"><iframe src="styles/5-retro.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">05 · Wild Card</span>
+        <h2>Retro-Futurist</h2>
+        <p>Y2K / arcade / vaporwave. Pixel fonts, CRT scanlines, neon sun. Unforgettable — leans hard into the gaming / PS5 angle.</p>
+        <div class="tags"><span class="tag">Arcade</span><span class="tag">Pixel</span><span class="tag">Gaming</span><span class="tag">Bold</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/6-epson-corporate.html" class="tile">
+      <div class="preview"><iframe src="styles/6-epson-corporate.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">06 · Epson-Inspired</span>
+        <h2>Corporate Clean</h2>
+        <p>Epson / HP India aesthetic. White background, red + navy accents, product cards, mega nav. Maximum trust for GeM and institutional buyers.</p>
+        <div class="tags"><span class="tag">White</span><span class="tag">Corporate</span><span class="tag">GeM</span><span class="tag">Trust</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/7-showroom.html" class="tile">
+      <div class="preview"><iframe src="styles/7-showroom.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">07 · Cinematic</span>
+        <h2>Showroom</h2>
+        <p>Sony / Louis Vuitton vibe. Full-bleed black hero, huge hero products, uppercase typography. Makes every product feel like a launch.</p>
+        <div class="tags"><span class="tag">Black</span><span class="tag">Cinematic</span><span class="tag">Luxury</span><span class="tag">Gaming</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+
+    <a href="styles/8-playful.html" class="tile">
+      <div class="preview"><iframe src="styles/8-playful.html" scrolling="no"></iframe></div>
+      <div class="meta">
+        <span class="badge">08 · Friendly</span>
+        <h2>Playful Pop</h2>
+        <p>Duolingo / Notion vibe. Bright pastels, chunky borders, hard shadows, rounded everything. Warm, local, shop-around-the-corner energy.</p>
+        <div class="tags"><span class="tag">Pastel</span><span class="tag">Rounded</span><span class="tag">Friendly</span><span class="tag">Local</span></div>
+        <div class="cta">Open demo →</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="foot">Tell me the number — 1 through 8 — and I'll build out the full 7-page site in that direction.</div>
+</div>
+</body></html>

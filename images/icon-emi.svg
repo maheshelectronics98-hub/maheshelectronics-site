@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <!-- "0% Cost EMI" round badge — gold ring with diagonal split,
+       echoing the rubber-stamp style. Uses brand muted-gold (#C9A24A). -->
+
+  <!-- Outer gold ring -->
+  <circle cx="40" cy="40" r="38" fill="#C9A24A"/>
+  <circle cx="40" cy="40" r="34" fill="#fff" stroke="#1A1A1A" stroke-width="0.8"/>
+  <circle cx="40" cy="40" r="38" fill="none" stroke="#1A1A1A" stroke-width="0.8"/>
+
+  <!-- Diagonal split: lower wedge stays gold -->
+  <path d="M 40 74 A 34 34 0 0 1 9.6 53 L 70.4 27 A 34 34 0 0 1 40 74 Z" fill="#C9A24A"/>
+  <line x1="9.6" y1="53" x2="70.4" y2="27" stroke="#1A1A1A" stroke-width="0.8"/>
+
+  <!-- "0%" — slanted bold black across the upper white half -->
+  <g transform="translate(40 36) rotate(-23)">
+    <text x="0" y="0" text-anchor="middle"
+          font-family="Impact,'Arial Black',sans-serif"
+          font-weight="900" font-size="24" fill="#1A1A1A"
+          letter-spacing="0.5">0%</text>
+  </g>
+
+  <!-- "COST EMI" — across the gold lower wedge, white with black outline -->
+  <g transform="translate(44 56) rotate(-23)">
+    <text x="0" y="0" text-anchor="middle"
+          font-family="Impact,'Arial Black',sans-serif"
+          font-weight="900" font-size="10.5"
+          stroke="#1A1A1A" stroke-width="1.6" paint-order="stroke fill"
+          fill="#fff" letter-spacing="0.6">COST EMI</text>
+  </g>
+</svg>

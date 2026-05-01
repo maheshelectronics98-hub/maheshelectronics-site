@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2 / Street Drop — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3EF;--ink:#0A0A0A;--paper:#FFFFFF;--accent:#FF4500;--border:#0A0A0A;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Archivo',sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Archivo Black',sans-serif;letter-spacing:-.03em;text-transform:uppercase;line-height:.9}
+.mono{font-family:'JetBrains Mono',monospace}
+/* Switcher */
+.switcher{position:sticky;top:0;left:0;right:0;background:var(--ink);padding:10px 20px;z-index:100;display:flex;justify-content:center;gap:4px;overflow-x:auto}
+.switcher a{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:#999;text-decoration:none;padding:8px 14px;border:1px solid transparent;white-space:nowrap;text-transform:uppercase}
+.switcher a.active{background:var(--accent);color:var(--ink)}
+.switcher a:hover:not(.active){color:white;border-color:#333}
+/* Marquee */
+.marquee{background:var(--ink);color:var(--bg);overflow:hidden;border-top:1px solid #333;border-bottom:1px solid #333;padding:12px 0}
+.marquee-track{display:flex;gap:40px;animation:scroll 30s linear infinite;white-space:nowrap;font-family:'Archivo Black',sans-serif;font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em}
+.marquee-track span{display:flex;align-items:center;gap:40px}
+.marquee-track span::after{content:"★";color:var(--accent)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* Hero */
+.hero{padding:40px 24px 20px;max-width:1400px;margin:0 auto}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end;min-height:70vh}
+.hero-left h1{font-size:clamp(3.5rem,9vw,8rem);color:var(--ink)}
+.hero-left h1 .outline{-webkit-text-stroke:2px var(--ink);color:transparent}
+.hero-left h1 .orange{color:var(--accent)}
+.meta{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;display:flex;gap:20px;margin-top:24px;text-transform:uppercase;padding-top:20px;border-top:2px solid var(--ink)}
+.hero-right{background:var(--ink);color:var(--bg);padding:32px;position:relative;aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:space-between;border:2px solid var(--ink)}
+.tag{position:absolute;top:20px;right:20px;background:var(--accent);color:var(--ink);padding:8px 14px;font-family:'Archivo Black',sans-serif;font-size:.85rem;text-transform:uppercase;transform:rotate(4deg)}
+.hero-right h2{font-size:3rem;color:var(--bg)}
+.hero-right .chip{display:inline-block;border:1.5px solid var(--bg);padding:6px 12px;margin-right:6px;font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase}
+.cta{display:inline-block;background:var(--accent);color:var(--ink);padding:18px 28px;font-family:'Archivo Black',sans-serif;text-transform:uppercase;text-decoration:none;font-size:1rem;border:2px solid var(--ink);transition:transform .15s}
+.cta:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.cta-white{background:var(--bg);color:var(--ink)}
+/* Drop row */
+.drops{max-width:1400px;margin:40px auto;padding:0 24px}
+.drops-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--ink);padding-bottom:14px;margin-bottom:24px}
+.drops-head h2{font-size:clamp(1.8rem,4vw,3rem)}
+.drops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.drop{background:var(--paper);border:2px solid var(--ink);padding:16px;position:relative;transition:transform .2s}
+.drop:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.drop-img{aspect-ratio:1;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:4rem;margin-bottom:12px;border:1px solid var(--ink)}
+.drop-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:#666}
+.drop-name{font-family:'Archivo Black',sans-serif;font-size:1rem;text-transform:uppercase;margin:6px 0}
+.drop-price{font-family:'Archivo Black',sans-serif;font-size:1.2rem;color:var(--accent)}
+.drop.hot{background:var(--ink);color:var(--bg)}
+.drop.hot .drop-num{color:#999}.drop.hot .drop-img{background:#111;border-color:#333}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.drops-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">← All</a>
+  <a href="1-tech-og.html">1 · Tech OG</a>
+  <a href="2-street-drop.html" class="active">2 · Street Drop</a>
+  <a href="3-editorial.html">3 · Editorial</a>
+  <a href="4-glass.html">4 · Glass</a>
+  <a href="5-retro.html">5 · Retro</a>
+</div>
+
+<div class="marquee"><div class="marquee-track">
+  <span>PS5 IN STOCK</span><span>CANON PIXMA ZONE</span><span>40 YEARS VALSAD</span><span>18+ BRANDS</span><span>GEM AUTHORIZED</span>
+  <span>PS5 IN STOCK</span><span>CANON PIXMA ZONE</span><span>40 YEARS VALSAD</span><span>18+ BRANDS</span><span>GEM AUTHORIZED</span>
+</div></div>
+
+<div class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="mono" style="font-size:.8rem;font-weight:700;margin-bottom:20px">EST · 1985 — VALSAD · GUJARAT</div>
+      <h1>VALSAD'S<br><span class="orange">LOUDEST</span><br><span class="outline">TECH</span><br>SHOP.</h1>
+      <div class="meta"><span>▲ 40 YRS</span><span>▲ 18 BRANDS</span><span>▲ GEM ✓</span></div>
+      <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+        <a href="#" class="cta">Shop Drop →</a>
+        <a href="#" class="cta cta-white">WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <span class="tag">NEW DROP</span>
+      <div class="mono" style="font-size:.75rem;opacity:.6">FEATURED / 001</div>
+      <div>
+        <h2>PS5<br>SLIM.</h2>
+        <p style="margin-top:12px;opacity:.7;font-size:.9rem">Valsad's only authorized hub. Console + 2 controllers + 3 games bundle.</p>
+        <div style="margin-top:18px"><span class="chip">Gaming</span><span class="chip">In Stock</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="drops">
+  <div class="drops-head">
+    <h2>The Drop — SS26</h2>
+    <span class="mono" style="font-size:.8rem;font-weight:700">LOT / 04 ITEMS</span>
+  </div>
+  <div class="drops-grid">
+    <div class="drop hot"><div class="drop-img">🎮</div><div class="drop-num">001 / HOT</div><div class="drop-name">PS5 Bundle</div><div class="drop-price">₹54,990</div></div>
+    <div class="drop"><div class="drop-img">💻</div><div class="drop-num">002 / CORE</div><div class="drop-name">HP Victus</div><div class="drop-price">₹64,990</div></div>
+    <div class="drop"><div class="drop-img">🖨</div><div class="drop-num">003 / OG</div><div class="drop-name">Canon G3010</div><div class="drop-price">₹14,990</div></div>
+    <div class="drop"><div class="drop-img">📷</div><div class="drop-num">004 / GEM</div><div class="drop-name">Hikvision 4K</div><div class="drop-price">₹24,990</div></div>
+  </div>
+</div>
+
+</body></html>

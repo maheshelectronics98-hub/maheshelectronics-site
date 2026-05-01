@@ -1,0 +1,23 @@
+# Caddy reverse proxy with auto-SSL. Drop this on a VPS, point your domain's
+# A/AAAA records at it, and Caddy fetches a Let's Encrypt cert on first hit.
+#
+# Replace maheshelectronics.in with your real domain.
+
+maheshelectronics.in, www.maheshelectronics.in {
+    encode gzip zstd
+    reverse_proxy localhost:3000
+
+    # Cache product images aggressively — they're SHA-256 deduped, so a new
+    # version always lands at a new path.
+    @images path_regexp ^/images/products/
+    header @images Cache-Control "public, max-age=2592000, immutable"
+
+    # Hide the admin panel from search engines.
+    @admin path /admin*
+    header @admin X-Robots-Tag "noindex, nofollow"
+
+    log {
+        output file /var/log/caddy/mahesh.log
+        format console
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 / Showroom — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#FFF;--muted:#9A9A9A;--accent:#FF3B3B;--gold:#D4AF37;--line:rgba(255,255,255,.1);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+h1,h2,h3{font-weight:900;letter-spacing:-.03em;line-height:1}
+/* Switcher */
+.switcher{background:#0A0A0F;padding:10px 20px;display:flex;justify-content:center;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line)}
+.switcher a{font-size:.76rem;font-weight:600;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:100px;white-space:nowrap}
+.switcher a.active{background:var(--accent);color:white}
+.switcher a:hover:not(.active){color:white}
+/* Nav */
+.nav{position:absolute;top:44px;left:0;right:0;z-index:20;padding:24px 40px;display:flex;justify-content:space-between;align-items:center}
+.nav .logo{font-weight:900;font-size:1.2rem;letter-spacing:.02em}
+.nav ul{list-style:none;display:flex;gap:32px}
+.nav ul a{color:rgba(255,255,255,.85);text-decoration:none;font-weight:500;font-size:.88rem}
+.nav ul a:hover{color:var(--accent)}
+/* Hero fullscreen */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 70% 40%,rgba(255,59,59,.25) 0%,transparent 60%),
+  radial-gradient(ellipse at 20% 80%,rgba(212,175,55,.15) 0%,transparent 60%),
+  linear-gradient(180deg,#000,#1a0a0a 50%,#000)}
+.hero-bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);background-size:32px 32px}
+.hero-product{position:absolute;right:4%;top:50%;transform:translateY(-50%);font-size:26rem;filter:drop-shadow(0 40px 80px rgba(255,59,59,.4));opacity:.95}
+.hero-content{position:relative;z-index:10;padding:0 40px 80px;max-width:1400px;margin:0 auto;width:100%}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.kicker::before{content:"";width:40px;height:1px;background:var(--accent)}
+.hero h1{font-size:clamp(3.5rem,10vw,9rem);max-width:1000px}
+.hero h1 .accent{color:var(--accent);font-style:italic}
+.hero h1 .thin{font-weight:400;font-style:italic;color:rgba(255,255,255,.6)}
+.hero-cta{display:flex;gap:16px;margin-top:36px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:18px 30px;border-radius:0;font-weight:700;font-size:.9rem;text-decoration:none;letter-spacing:.02em;transition:all .25s;text-transform:uppercase}
+.btn-p{background:var(--accent);color:white}.btn-p:hover{background:white;color:black}
+.btn-g{background:transparent;color:white;border:1px solid rgba(255,255,255,.4)}
+.btn-g:hover{border-color:white;background:rgba(255,255,255,.05)}
+.hero-foot{position:absolute;bottom:30px;right:40px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);z-index:10}
+/* Showcase rails */
+.rails{padding:80px 40px;max-width:1400px;margin:0 auto}
+.rail-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+.rail-head h2{font-size:clamp(2rem,4vw,3rem)}
+.rail-head a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line)}
+.rail-card{background:#0A0A0A;padding:40px 30px;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:background .3s}
+.rail-card:hover{background:#141414}
+.rail-card .img{font-size:10rem;text-align:center;flex-grow:1;display:flex;align-items:center;justify-content:center;transition:transform .4s}
+.rail-card:hover .img{transform:scale(1.08)}
+.rail-card h3{font-size:1.8rem}
+.rail-card .num{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.rail-card .arrow{font-size:1.4rem;color:var(--accent);margin-top:10px}
+.rail-card.featured{background:linear-gradient(135deg,#1a0a0a,#000);border:1px solid var(--accent)}
+.rail-card .tag{position:absolute;top:20px;right:20px;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+@media(max-width:780px){.nav ul{display:none}.hero-product{font-size:14rem;right:-30px;opacity:.6}.rail{grid-template-columns:1fr}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">← All</a>
+  <a href="1-tech-og.html">1·Tech</a>
+  <a href="2-street-drop.html">2·Drop</a>
+  <a href="3-editorial.html">3·Editorial</a>
+  <a href="4-glass.html">4·Glass</a>
+  <a href="5-retro.html">5·Retro</a>
+  <a href="6-epson-corporate.html">6·Corporate</a>
+  <a href="7-showroom.html" class="active">7·Showroom</a>
+  <a href="8-playful.html">8·Playful</a>
+</div>
+
+<nav class="nav">
+  <div class="logo">MAHESH · ELECTRONICS</div>
+  <ul><li><a href="#">Laptops</a></li><li><a href="#">Gaming</a></li><li><a href="#">Printers</a></li><li><a href="#">CCTV</a></li><li><a href="#">Govt / GeM</a></li></ul>
+  <a href="#" style="color:var(--accent);font-weight:700;font-size:.88rem">WhatsApp →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-product">🎮</div>
+  <div class="hero-content">
+    <div class="kicker">Now on the floor · PS5 Slim</div>
+    <h1>The <span class="accent">console</span><br><span class="thin">every gamer</span><br>in Valsad wants.</h1>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-p">Reserve Yours →</a>
+      <a href="#" class="btn btn-g">See in showroom</a>
+    </div>
+  </div>
+  <div class="hero-foot">Valsad · Since 1985 · 40 years</div>
+</section>
+
+<section class="rails">
+  <div class="rail-head"><h2>The Showroom Floor.</h2><a href="#">Walk through →</a></div>
+  <div class="rail">
+    <a class="rail-card featured"><span class="tag">Featured</span><div><div class="num">01 / Gaming</div><h3>PlayStation 5</h3></div><div class="img">🎮</div><div class="arrow">→</div></a>
+    <a class="rail-card"><div><div class="num">02 / Mobility</div><h3>HP Victus</h3></div><div class="img">💻</div><div class="arrow">→</div></a>
+    <a class="rail-card"><div><div class="num">03 / Home Office</div><h3>Canon G3</h3></div><div class="img">🖨</div><div class="arrow">→</div></a>
+  </div>
+</section>
+
+</body></html>

@@ -1,0 +1,23 @@
+{
+  "_comment": "India-region product-listing entry URLs per brand. The Brand Website.csv only gives homepages; this map points the scraper at the actual catalog pages it should crawl. Add/edit per-brand as you discover better entry URLs.",
+  "HP":        ["https://www.hp.com/in-en/shop/laptops", "https://www.hp.com/in-en/shop/desktops", "https://www.hp.com/in-en/shop/printers/home-and-home-office-printers/smart-ink-tank-system.html", "https://www.hp.com/in-en/shop/printers/business-printers/laserjet.html", "https://www.hp.com/in-en/shop/printers/home-and-home-office-printers/deskjet.html", "https://www.hp.com/in-en/shop/printers/home-and-home-office-printers/photo-printers.html"],
+  "CANON":     ["https://in.canon/en/consumer/products/search?category=printing&subCategory=inkjet-printers", "https://in.canon/en/consumer/products/search?category=printing&subCategory=laser-printers", "https://in.canon/en/consumer/products/search?category=printing&subCategory=maxify", "https://in.canon/en/consumer/products/search?category=scanning&subCategory=flatbed-scanners", "https://in.canon/en/consumer/products/search?category=scanning&subCategory=document-scanners", "https://in.canon/en/consumer/products/search?category=photography&subCategory=interchangeable-lens-cameras", "https://in.canon/en/consumer/products/search?category=photography&subCategory=digital-compact-cameras"],
+  "EPSON":     ["https://www.epson.co.in/EcoTank-Printers/c/w170in", "https://www.epson.co.in/Colour-EcoTank-Printers", "https://www.epson.co.in/Monochrome-EcoTank-printers", "https://www.epson.co.in/EcoTank-photo-printer", "https://www.epson.co.in/Projectors/c/w320in", "https://www.epson.co.in/Scanners/c/w200in"],
+  "ACER":      ["https://store.acer.com/en-in/laptops", "https://store.acer.com/en-in/laptops/gaming", "https://store.acer.com/en-in/monitors", "https://store.acer.com/en-in/monitors/gaming"],
+  "LG":        ["https://www.lg.com/in/tvs", "https://www.lg.com/in/air-conditioners", "https://www.lg.com/in/refrigerators", "https://www.lg.com/in/washing-machines"],
+  "VIEWSONIC": ["https://www.viewsonic.com/in/colorpro/", "https://www.viewsonic.com/in/products/projectors/business", "https://www.viewsonic.com/in/products/projectors/portable", "https://www.viewsonic.com/in/products/projectors/golf", "https://www.viewsonic.com/in/products/projectors/education", "https://www.viewsonic.com/in/products/lcd/business-monitor", "https://www.viewsonic.com/in/products/lcd/gaming"],
+  "BENQ":      ["https://www.benq.com/en-in/sitemap.xml"],
+  "VERTIV":    ["https://www.vertiv.com/en-in/products-catalog/critical-power/uninterruptible-power-supplies-ups/"],
+  "DELL":      ["https://www.dellstore.com/laptops.html", "https://www.dellstore.com/desktops.html", "https://www.dellstore.com/monitors.html", "https://www.dellstore.com/accessories.html"],
+  "BROTHER":   ["https://www.brother.in/sitemap-product.xml"],
+  "LENOVO":    ["80001", "80002", "80005"],
+  "SONY":      ["allTvScreenSizeNeww"],
+  "LAPCARE":   ["https://www.lapcare.com/collections/all"],
+  "QUICK HEAL":["https://www.quickheal.com/products/"],
+  "SEQRITE":   ["https://www.seqrite.com/product-sitemap.xml"],
+  "ARTIS":     ["https://www.artis.in/products"],
+  "ELNOVA":    ["https://www.elnova.in/products"],
+  "TITLE":     ["https://www.title-interactive.com/products"],
+  "DELTA":     ["https://www.deltaww.com/en-US/products/"],
+  "HIKVISION": ["https://www.hikvision.com/en/products/IP-Products/Network-Cameras/", "https://www.hikvision.com/en/products/Turbo-HD-Products/Cameras/", "https://www.hikvision.com/en/products/IP-Products/Network-Video-Recorders/", "https://www.hikvision.com/en/products/Turbo-HD-Products/Recorders/"]
+}

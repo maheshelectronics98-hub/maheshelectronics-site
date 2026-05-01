@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mahesh Admin</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #f5f7fa; color: #1a1f2e; }
+  h1, h2 { margin-top: 0; }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.06); margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #eef0f3; vertical-align: middle; }
+  th { background: #f8fafc; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #5a6373; }
+  img.thumb { width: 48px; height: 36px; object-fit: contain; background: #fff; border: 1px solid #e5e8ed; border-radius: 4px; }
+  select { padding: 4px 8px; font-size: 13px; border: 1px solid #d0d5dd; border-radius: 4px; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .pill.active { background: #d1fadf; color: #027a48; }
+  .pill.hidden { background: #fef0c7; color: #b54708; }
+  .pill.discontinued { background: #fee4e2; color: #b42318; }
+  .pill.ok { background: #d1fadf; color: #027a48; }
+  .pill.partial { background: #fef0c7; color: #b54708; }
+  .pill.failed { background: #fee4e2; color: #b42318; }
+  button { padding: 6px 14px; background: #1f5fa8; color: #fff; border: 0; border-radius: 4px; cursor: pointer; font-size: 13px; }
+  button:hover { background: #174680; }
+  button.sm { padding: 3px 10px; font-size: 12px; }
+  input, select { font: inherit; }
+  .row { display: flex; gap: 12px; align-items: center; }
+  .muted { color: #6b7280; font-size: 12px; }
+  #search { padding: 8px 12px; border: 1px solid #d0d5dd; border-radius: 4px; width: 280px; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>Mahesh Electronics — Admin</h1>
+  <div><a href="/">← Back to site</a></div>
+</div>
+
+<div class="card">
+  <h2>Brand health</h2>
+  <table id="brandsTable">
+    <thead><tr><th>Brand</th><th>Active products</th><th>Last scraped</th><th>Last status</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Run scrape</h2>
+  <div class="row">
+    <select id="brandSelect"></select>
+    <button id="scrapeBtn">Run for selected brand</button>
+    <span id="scrapeStatus" class="muted"></span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Recent scrape runs</h2>
+  <table id="runsTable">
+    <thead><tr><th>Started</th><th>Brand</th><th>Added</th><th>Updated</th><th>Removed</th><th>Errors</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Products</h2>
+  <div class="row" style="margin-bottom: 12px">
+    <input id="search" placeholder="Filter by brand, name, model…">
+    <span class="muted" id="count"></span>
+  </div>
+  <table id="productsTable">
+    <thead><tr><th>Image</th><th>Brand</th><th>Category</th><th>Name</th><th>Model</th><th>Status</th><th>Last seen</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+let allProducts = [];
+
+async function loadProducts() {
+  const r = await fetch('/admin/api/products');
+  allProducts = await r.json();
+  renderProducts();
+  // brand dropdown is populated by loadBrands() so brands without products
+  // yet (new adapters) are still selectable.
+  document.getElementById('count').textContent = allProducts.length + ' products';
+}
+
+function renderProducts() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const rows = allProducts.filter(p =>
+    !q || (p.brand+p.name+p.model+p.category).toLowerCase().includes(q)
+  );
+  const tbody = document.querySelector('#productsTable tbody');
+  tbody.innerHTML = rows.map(p => `
+    <tr>
+      <td>${p.primary_image ? `<img class="thumb" src="/${p.primary_image}">` : ''}</td>
+      <td>${p.brand}</td>
+      <td>${p.category || ''}</td>
+      <td>${p.name || ''}</td>
+      <td>${p.model || ''}</td>
+      <td>
+        <select onchange="setStatus(${p.id}, this.value)">
+          ${['active','hidden','discontinued'].map(s =>
+            `<option value="${s}" ${p.status===s?'selected':''}>${s}</option>`
+          ).join('')}
+        </select>
+      </td>
+      <td class="muted">${(p.last_seen_at||'').replace('T',' ').slice(0,16)}</td>
+    </tr>
+  `).join('');
+}
+
+async function setStatus(id, status) {
+  await fetch(`/admin/api/products/${id}/status`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status })
+  });
+  const p = allProducts.find(x => x.id === id);
+  if (p) p.status = status;
+}
+
+async function loadBrands() {
+  const r = await fetch('/admin/api/brands');
+  const rows = await r.json();
+  // Also use this list to populate the scrape dropdown so brands without
+  // products yet (newly added adapters) are still selectable.
+  const sel = document.getElementById('brandSelect');
+  sel.innerHTML = rows.map(b => `<option>${b.name}</option>`).join('');
+  const tbody = document.querySelector('#brandsTable tbody');
+  tbody.innerHTML = rows.map(b => `
+    <tr>
+      <td>${b.name}</td>
+      <td>${b.active_count}</td>
+      <td class="muted">${(b.last_scraped_at||'never').replace('T',' ').slice(0,16)}</td>
+      <td>${b.last_status ? `<span class="pill ${b.last_status}">${b.last_status}</span>` : '<span class="muted">—</span>'}</td>
+    </tr>
+  `).join('');
+}
+
+async function loadRuns() {
+  const r = await fetch('/admin/api/runs');
+  const rows = await r.json();
+  const tbody = document.querySelector('#runsTable tbody');
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td class="muted">${(r.started_at||'').replace('T',' ').slice(0,16)}</td>
+      <td>${r.brand||''}</td>
+      <td>${r.products_added ?? '—'}</td>
+      <td>${r.products_updated ?? '—'}</td>
+      <td>${r.products_removed ?? '—'}</td>
+      <td>${r.errors_json ? `<span class="pill failed">${JSON.parse(r.errors_json).length}</span>` : '<span class="pill ok">0</span>'}</td>
+    </tr>
+  `).join('');
+}
+
+document.getElementById('search').addEventListener('input', renderProducts);
+document.getElementById('scrapeBtn').addEventListener('click', async () => {
+  const brand = document.getElementById('brandSelect').value;
+  document.getElementById('scrapeStatus').textContent = 'Started — refresh in a minute…';
+  await fetch(`/admin/api/scrape/${encodeURIComponent(brand)}`, { method: 'POST' });
+  setTimeout(() => { loadRuns(); loadProducts(); document.getElementById('scrapeStatus').textContent = ''; }, 5000);
+});
+
+loadBrands();
+loadProducts();
+loadRuns();
+setInterval(loadRuns, 15000);
+setInterval(loadBrands, 30000);
+</script>
+</body>
+</html>

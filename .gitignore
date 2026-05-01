@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Build output
+dist/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+server/.env
+server/.env.*
+!server/.env.example
+
+# Discovery dumps (large, regenerable)
+server/discovery/
+
+# Server logs
+server/logs/
+
+# Private business documents — these must NEVER hit the public repo
+*.pdf
+*.docx
+*.xlsx
+*.rar
+*.DNG
+*.mp4
+*.mov
+WhatsApp*
+customer*list*
+*certi*
+oem*authorization*
+file.enc
+gst*certificate*
+msme*
+iso.pdf
+Newlogo.png.jpeg
+Visiting*
+
+# IDE / harness state
+.vscode/
+.idea/
+.claude/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Allow the scraped product DB + product images (the workflow commits these)
+!server/mahesh.db
+!images/products/

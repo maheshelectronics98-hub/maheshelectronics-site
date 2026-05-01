@@ -1,0 +1,114 @@
+# Weekly OEM scrape → static export → deploy to GitHub Pages.
+# Runs every Sunday 03:00 IST (= 21:30 UTC Saturday) plus manual trigger.
+#
+# Setup (do once):
+#   1. Repository → Settings → Pages → Source = "GitHub Actions"
+#   2. (Optional) Repository → Settings → Pages → Custom domain = your GoDaddy domain
+#      Then Settings → Pages → Enforce HTTPS (after DNS propagates)
+#   3. Repository → Settings → Actions → Workflow permissions =
+#      "Read and write permissions" (so the workflow can publish Pages)
+#
+# Note: the SQLite DB and downloaded images are persisted in the repo so
+# weekly runs accumulate state instead of re-scraping from scratch. To skip
+# the scrape and just rebuild from current DB, dispatch with skip_scrape=true.
+
+name: Scrape & Deploy
+
+on:
+  schedule:
+    - cron: '30 21 * * 6'   # Saturday 21:30 UTC = Sunday 03:00 Asia/Kolkata
+  workflow_dispatch:
+    inputs:
+      skip_scrape:
+        description: 'Skip scrape, just rebuild + deploy from current DB'
+        type: boolean
+        default: false
+      brand_only:
+        description: 'Scrape only this brand (leave blank for all)'
+        type: string
+        default: ''
+
+permissions:
+  contents: write   # allow committing scraped data back to the repo
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install server deps
+        working-directory: server
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        working-directory: server
+        run: npx playwright install --with-deps chromium
+
+      - name: Initialize DB (idempotent)
+        working-directory: server
+        run: node db.js --init
+
+      - name: Run scraper
+        if: ${{ inputs.skip_scrape != true }}
+        working-directory: server
+        env:
+          # Skip cron registration inside the long-running server during CI
+          CI: 'true'
+        run: |
+          if [ -n "${{ inputs.brand_only }}" ]; then
+            node scraper/index.js --brand="${{ inputs.brand_only }}"
+          else
+            node scraper/index.js
+          fi
+
+      - name: Build static site
+        working-directory: server
+        run: |
+          if [ -n "${{ vars.SITE_DOMAIN }}" ]; then
+            node build-static.js --domain="${{ vars.SITE_DOMAIN }}"
+          else
+            node build-static.js
+          fi
+
+      - name: Commit DB + images back to repo
+        if: ${{ inputs.skip_scrape != true }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add server/mahesh.db images/products/ || true
+          if ! git diff --cached --quiet; then
+            git commit -m "weekly scrape: $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "no DB/image changes to commit"
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh Electronics — Valsad's Tech Pioneer Since 1985</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --bg-2: #111118;
+    --surface: #17171F;
+    --surface-2: #1F1F2B;
+    --border: rgba(255,255,255,.08);
+    --text: #E6E6F0;
+    --muted: #8A8AA3;
+    --accent: #FF6B2C;
+    --accent-2: #FFB547;
+    --neon: #00E5FF;
+    --neon-2: #B44CFF;
+    --green: #22E373;
+  }
+  html.pro {
+    --bg: #F6F7FB;
+    --bg-2: #EEF1F8;
+    --surface: #FFFFFF;
+    --surface-2: #F0F4FF;
+    --border: rgba(10,20,50,.08);
+    --text: #0E1230;
+    --muted: #5A617C;
+    --accent: #003580;
+    --accent-2: #FF6B00;
+    --neon: #0057B8;
+    --neon-2: #003580;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; transition: background .4s, color .4s; }
+  h1,h2,h3,h4 { font-family:'Bricolage Grotesque','Space Grotesk',sans-serif; font-weight:700; letter-spacing:-.02em; }
+  .mono { font-family:'Space Grotesk',sans-serif; }
+
+  /* ============ NOISE / GRAIN TEXTURE ============ */
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.5; mix-blend-mode:overlay;
+  }
+
+  /* ============ MESH GRADIENT GLOWS ============ */
+  .glow-a { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+
+  /* ============ GLASS ============ */
+  .glass {
+    background: rgba(255,255,255,.03);
+    border:1px solid var(--border);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  html.pro .glass { background: rgba(255,255,255,.7); }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: fixed; top:16px; left:50%; transform:translateX(-50%);
+    z-index: 100; width: calc(100% - 32px); max-width: 1200px;
+    border-radius: 100px;
+    padding: 10px 14px 10px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    background: rgba(10,10,15,.55);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px) saturate(150%);
+    box-shadow: 0 8px 40px rgba(0,0,0,.4);
+  }
+  html.pro .nav { background: rgba(255,255,255,.7); box-shadow: 0 8px 32px rgba(0,53,128,.08); }
+  .logo-mark {
+    width:38px; height:38px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, #FF6B2C, #FFB547);
+    color: #0A0A0F; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1rem;
+    box-shadow: 0 4px 16px rgba(255,107,44,.4);
+  }
+  .nav a.link {
+    color: var(--muted); font-size:.86rem; font-weight:500; text-decoration:none;
+    padding: 8px 14px; border-radius: 100px; transition: all .2s;
+  }
+  .nav a.link:hover, .nav a.link.active { color: var(--text); background: rgba(255,255,255,.06); }
+  html.pro .nav a.link:hover, html.pro .nav a.link.active { background: rgba(0,53,128,.08); }
+
+  /* Mode toggle */
+  .mode-toggle {
+    display:flex; align-items:center; gap:4px;
+    background: rgba(255,255,255,.05); border: 1px solid var(--border);
+    border-radius: 100px; padding: 3px; font-size:.75rem; font-weight:600;
+  }
+  .mode-toggle button {
+    padding: 6px 12px; border-radius: 100px; border:none; background:transparent;
+    color: var(--muted); cursor:pointer; transition: all .2s;
+    display:flex; align-items:center; gap:4px; font-family:'Space Grotesk',sans-serif;
+  }
+  .mode-toggle button.active {
+    background: linear-gradient(135deg,#FF6B2C,#FFB547);
+    color: #0A0A0F;
+    box-shadow: 0 2px 12px rgba(255,107,44,.5);
+  }
+  html.pro .mode-toggle button.active { background: #003580; color:#fff; box-shadow: 0 2px 12px rgba(0,53,128,.3); }
+
+  /* ============ LIVE DROPS STRIP ============ */
+  .drops-strip {
+    position: relative; z-index: 2; margin-top:90px; padding: 16px 20px;
+    display:flex; gap:16px; overflow-x:auto; scrollbar-width:none;
+  }
+  .drops-strip::-webkit-scrollbar { display:none; }
+  .drop {
+    flex: 0 0 auto; display:flex; flex-direction:column; align-items:center; gap:6px;
+    cursor:pointer; text-decoration:none;
+  }
+  .drop-ring {
+    width: 72px; height: 72px; border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(from 0deg, #FF6B2C, #B44CFF, #00E5FF, #FF6B2C);
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .drop-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: var(--surface); display:flex; align-items:center; justify-content:center;
+    font-size: 1.8rem;
+    border: 3px solid var(--bg);
+  }
+  .drop.live .drop-ring::after {
+    content: 'LIVE'; position: absolute;
+    background: #FF3B3B; color:white; font-size:.6rem; font-weight:800;
+    padding: 2px 6px; border-radius: 4px; margin-top: 55px; margin-left: 18px;
+  }
+  .drop span { font-size:.7rem; color:var(--muted); font-weight:600; font-family:'Space Grotesk',sans-serif; }
+
+  /* ============ BENTO HERO ============ */
+  .bento {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 140px;
+    gap: 14px;
+    padding: 20px;
+    max-width: 1240px; margin: 0 auto;
+  }
+  .cell {
+    position: relative; overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 24px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
+  }
+  .cell:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,107,44,.4);
+    box-shadow: 0 20px 60px rgba(255,107,44,.15);
+  }
+  .cell-big   { grid-column: span 4; grid-row: span 3; padding: 40px; }
+  .cell-hero  { grid-column: span 2; grid-row: span 2; }
+  .cell-med   { grid-column: span 2; grid-row: span 1; }
+  .cell-wide  { grid-column: span 3; grid-row: span 1; }
+  .cell-tall  { grid-column: span 2; grid-row: span 2; }
+  .cell-sm    { grid-column: span 1; grid-row: span 1; }
+  .cell-neon {
+    background: radial-gradient(circle at 30% 20%, rgba(180,76,255,.25), transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,229,255,.2), transparent 60%), #0C0C18;
+    border-color: rgba(180,76,255,.3);
+  }
+  .cell-orange {
+    background: linear-gradient(135deg, #FF6B2C 0%, #FFB547 100%);
+    color: #0A0A0F;
+  }
+  .cell-green {
+    background: linear-gradient(135deg, #0F3D2C 0%, #1DB368 100%);
+    border-color: rgba(34,227,115,.3);
+  }
+  .cell-img {
+    background-size: cover; background-position: center;
+  }
+  .cell-big h1 {
+    font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+    line-height: 1; margin: 0;
+    background: linear-gradient(135deg, #fff 0%, #fff 50%, #FFB547 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  html.pro .cell-big h1 {
+    background: linear-gradient(135deg, #0E1230 0%, #0E1230 50%, #FF6B00 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .cell-label { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-weight:700; font-family:'Space Grotesk',sans-serif; }
+  .cell-title { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.15rem; margin:.3rem 0 .4rem; }
+  .cell-sub { font-size:.85rem; color:var(--muted); line-height:1.5; }
+  .cell-num { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height:1; letter-spacing:-.04em; }
+  .cell-icon { font-size: 2rem; }
+
+  /* Live status pill */
+  .live-pill {
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(34,227,115,.12); color:#22E373; border:1px solid rgba(34,227,115,.3);
+    padding: 4px 10px; border-radius: 100px; font-size:.72rem; font-weight:600; font-family:'Space Grotesk',sans-serif;
+  }
+  .live-pill .dot { width:6px; height:6px; border-radius:50%; background:#22E373; animation: blink 1.5s infinite; }
+  @keyframes blink { 50% { opacity: .35; } }
+
+  /* CTA */
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 13px 22px; border-radius: 100px; font-weight:600; font-size:.9rem;
+    text-decoration:none; transition: all .22s; cursor:pointer; border:none;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #FF6B2C, #FFB547);
+    color: #0A0A0F;
+    box-shadow: 0 8px 24px rgba(255,107,44,.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(255,107,44,.55); }
+  .btn-ghost {
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  html.pro .btn-ghost { background:#fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.12); transform:translateY(-2px); }
+  .btn-wa {
+    background: #22E373; color: #06160E;
+    box-shadow: 0 8px 24px rgba(34,227,115,.3);
+  }
+  .btn-wa:hover { transform:translateY(-2px); box-shadow: 0 14px 36px rgba(34,227,115,.5); }
+
+  /* ============ 3D TILT CARDS ============ */
+  .tilt { transform-style: preserve-3d; transition: transform .2s; }
+  .tilt-inner { transform: translateZ(20px); }
+
+  /* ============ SECTIONS ============ */
+  section.block { position:relative; z-index:2; padding: 80px 20px; max-width: 1240px; margin: 0 auto; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 5px 12px; border-radius: 100px;
+    background: rgba(255,107,44,.1); border: 1px solid rgba(255,107,44,.25);
+    color: #FF9D5C; font-family:'Space Grotesk',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  }
+  html.pro .eyebrow { background: rgba(0,53,128,.08); border-color: rgba(0,53,128,.2); color:#003580; }
+  .h-section { font-size: clamp(1.8rem, 3.6vw, 3rem); margin:.4rem 0 .6rem; }
+  .p-section { color: var(--muted); max-width: 560px; font-size:1.02rem; line-height:1.7; }
+
+  /* ============ PRODUCT GRID (BENTO-STYLE) ============ */
+  .product-bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin-top: 36px;
+  }
+  .pcard {
+    position:relative; overflow:hidden;
+    border-radius: 22px; padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display:flex; flex-direction:column; gap:10px;
+    transition: all .3s cubic-bezier(.2,.8,.2,1);
+    cursor:pointer;
+    min-height: 240px;
+  }
+  .pcard:hover {
+    border-color: rgba(255,107,44,.4);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,.4);
+  }
+  html.pro .pcard:hover { box-shadow: 0 24px 60px rgba(0,53,128,.15); }
+  .pcard.featured {
+    grid-column: span 2; grid-row: span 2;
+    background: linear-gradient(135deg, #111118 0%, #17171F 70%), radial-gradient(circle at 70% 0%, rgba(180,76,255,.4), transparent 60%);
+    min-height: 500px;
+  }
+  html.pro .pcard.featured { background: linear-gradient(135deg, #003580 0%, #0057B8 100%); color:white; }
+  .pcard.gaming {
+    background: radial-gradient(circle at 20% 0%, rgba(180,76,255,.3), transparent 50%),
+                radial-gradient(circle at 80% 100%, rgba(0,229,255,.25), transparent 50%),
+                #0A0A16;
+    border-color: rgba(180,76,255,.3);
+  }
+  .pcard-img {
+    width: 100%; height: 160px; border-radius: 16px;
+    background: linear-gradient(135deg,#2B2B3A,#17171F);
+    display:flex; align-items:center; justify-content:center; font-size: 4rem;
+    overflow: hidden; position: relative;
+  }
+  .pcard.featured .pcard-img { height: 280px; }
+  .pcard-img::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 30%, rgba(255,255,255,.08), transparent 60%);
+  }
+  .pcard-name { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:1.05rem; }
+  .pcard.featured .pcard-name { font-size:1.5rem; }
+  .pcard-desc { font-size:.82rem; color:var(--muted); flex:1; }
+  html.pro .pcard.featured .pcard-desc { color: rgba(255,255,255,.75); }
+  .chip {
+    display:inline-flex; align-items:center; gap:4px;
+    padding: 3px 10px; border-radius: 100px;
+    background: rgba(255,255,255,.06); border:1px solid var(--border);
+    font-size:.7rem; font-weight:600; font-family:'Space Grotesk',sans-serif;
+  }
+  .chip-gem { background: rgba(34,227,115,.1); border-color: rgba(34,227,115,.3); color:#22E373; }
+  .chip-new { background: rgba(180,76,255,.12); border-color: rgba(180,76,255,.3); color:#C77DFF; }
+  .chip-hot { background: rgba(255,59,59,.12); border-color: rgba(255,59,59,.3); color:#FF6B6B; }
+
+  /* ============ QUIZ / BUILD MY SETUP ============ */
+  .quiz {
+    position:relative; border-radius: 28px; overflow:hidden;
+    background: radial-gradient(circle at 10% 0%, rgba(180,76,255,.3), transparent 50%),
+                radial-gradient(circle at 90% 100%, rgba(0,229,255,.25), transparent 50%),
+                linear-gradient(135deg, #0F0F1A, #17171F);
+    border: 1px solid rgba(180,76,255,.2);
+    padding: 44px;
+  }
+  .quiz-option {
+    padding: 16px 20px; border-radius: 14px;
+    background: rgba(255,255,255,.03); border:1px solid var(--border);
+    cursor:pointer; transition: all .25s;
+    display:flex; align-items:center; gap:12px;
+    font-size:.94rem; font-weight:500;
+  }
+  .quiz-option:hover {
+    background: rgba(255,107,44,.08); border-color: rgba(255,107,44,.4);
+    transform: translateX(4px);
+  }
+  .quiz-option .opt-icon { font-size: 1.4rem; }
+
+  /* ============ JOURNEY — HORIZONTAL ============ */
+  .journey-scroll {
+    overflow-x: auto; padding: 20px 0 40px;
+    scrollbar-width: thin;
+  }
+  .journey-track {
+    display:flex; gap: 18px; padding: 0 20px; min-width: max-content;
+  }
+  .era {
+    flex: 0 0 280px; padding: 24px; border-radius: 22px;
+    background: var(--surface); border: 1px solid var(--border);
+    transition: all .3s;
+  }
+  .era:hover { transform:translateY(-6px); border-color: rgba(255,107,44,.4); }
+  .era.highlight { background: linear-gradient(135deg,#FF6B2C,#FFB547); color:#0A0A0F; border-color: transparent; }
+  .era-icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .era-year { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:1.6rem; }
+  .era-title { font-weight:700; margin:.2rem 0 .4rem; font-family:'Bricolage Grotesque',sans-serif; }
+  .era-desc { font-size:.84rem; color:var(--muted); line-height:1.55; }
+  .era.highlight .era-desc { color: rgba(10,10,15,.75); }
+
+  /* ============ REELS / SOCIAL ============ */
+  .reels-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .reel {
+    aspect-ratio: 9/16; border-radius: 18px; overflow: hidden;
+    background: linear-gradient(135deg, #2B2B3A, #17171F);
+    position: relative; cursor: pointer;
+    display:flex; align-items:flex-end; padding: 14px;
+    font-size: .8rem; color: white; font-weight:600;
+    transition: transform .3s;
+  }
+  .reel:hover { transform: scale(1.03); }
+  .reel::before {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(0,0,0,.8), transparent 60%);
+  }
+  .reel-emoji {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-size: 4rem;
+  }
+  .reel-play {
+    position:absolute; top: 14px; right: 14px;
+    background: rgba(255,255,255,.2); backdrop-filter: blur(10px);
+    border-radius: 100px; padding: 4px 10px;
+    font-size: .65rem; font-weight:700; font-family:'Space Grotesk',sans-serif;
+  }
+  .reel-label { position:relative; z-index:1; }
+
+  /* ============ TESTIMONIAL ============ */
+  .tg {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px;
+  }
+  .tcard {
+    padding: 24px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .tstars { color: #FFB547; letter-spacing: 2px; font-size: .95rem; }
+  .tquote { font-size:.95rem; line-height:1.6; margin: 12px 0 16px; color: var(--text); }
+  .tauthor { display:flex; align-items:center; gap:10px; }
+  .tavatar { width: 40px; height:40px; border-radius:50%; background: linear-gradient(135deg,#FF6B2C,#B44CFF); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-family:'Space Grotesk',sans-serif; }
+
+  /* ============ CTA FOOTER ============ */
+  .final-cta {
+    position:relative; overflow:hidden;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #FF6B2C 0%, #B44CFF 100%);
+    padding: 60px 40px; text-align:center;
+    color: white;
+  }
+  .final-cta::before {
+    content:''; position:absolute; inset:-50%;
+    background: conic-gradient(from 0deg, transparent, rgba(255,255,255,.2), transparent);
+    animation: spin 8s linear infinite;
+  }
+  .final-cta > * { position: relative; z-index: 1; }
+
+  /* ============ FLOATING WA + STATUS ============ */
+  .wa-widget {
+    position: fixed; bottom: 24px; right: 24px; z-index: 80;
+    display: flex; align-items:flex-end; flex-direction: column; gap: 10px;
+  }
+  .wa-status-bubble {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 12px 16px;
+    font-size: .82rem; color: var(--text);
+    box-shadow: 0 12px 40px rgba(0,0,0,.3);
+    display: flex; align-items: center; gap: 10px;
+    animation: bubble-in .5s cubic-bezier(.2,.8,.2,1) .8s both;
+  }
+  @keyframes bubble-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .wa-avatar {
+    width: 36px; height:36px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B2C, #FFB547);
+    display:flex; align-items:center; justify-content:center; color:#0A0A0F; font-weight:700; font-family:'Space Grotesk',sans-serif;
+    position: relative;
+  }
+  .wa-avatar::after {
+    content:''; position:absolute; bottom:-2px; right:-2px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #22E373; border: 2px solid var(--surface);
+  }
+  .wa-float-btn {
+    width: 62px; height: 62px; border-radius: 50%;
+    background: #22E373;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px rgba(34,227,115,.5);
+    position: relative; text-decoration:none;
+    transition: transform .2s;
+  }
+  .wa-float-btn:hover { transform: scale(1.08); }
+  .wa-float-btn::before {
+    content:''; position:absolute; inset:-8px; border-radius:50%;
+    border: 2px solid rgba(34,227,115,.5);
+    animation: pulseRing 2s ease-out infinite;
+  }
+  @keyframes pulseRing { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.7);opacity:0} }
+
+  /* ============ AR / CMD-K ============ */
+  .command-hint {
+    position: fixed; bottom: 24px; left: 24px; z-index: 80;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 10px 14px; font-size:.78rem; color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif; font-weight:500;
+    display: flex; align-items:center; gap: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  .kbd {
+    background: rgba(255,255,255,.08); border: 1px solid var(--border);
+    padding: 2px 6px; border-radius: 5px; font-size:.7rem; color: var(--text);
+  }
+
+  /* ============ FOOTER ============ */
+  footer.site-foot {
+    background: var(--bg-2); border-top:1px solid var(--border);
+    padding: 60px 20px 30px; margin-top: 40px;
+  }
+  .foot-wrap { max-width: 1240px; margin: 0 auto; display:grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
+  .foot-link { display:block; color: var(--muted); font-size:.86rem; text-decoration:none; padding: 4px 0; }
+  .foot-link:hover { color: var(--text); }
+  .foot-title { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:.9rem; margin-bottom: 16px; color: var(--text); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 980px) {
+    .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .cell-big { grid-column: span 2; grid-row: span 3; }
+    .cell-hero { grid-column: span 2; grid-row: span 2; }
+    .cell-med, .cell-wide, .cell-tall { grid-column: span 2; grid-row: span 1; }
+    .product-bento { grid-template-columns: repeat(2, 1fr); }
+    .pcard.featured { grid-column: span 2; grid-row: span 2; min-height: 420px; }
+    .foot-wrap { grid-template-columns: 1fr 1fr; }
+    .nav a.link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GLOWING ORBS -->
+<div class="glow-a" style="top:-100px; left:-100px; width:500px; height:500px; background:#FF6B2C; opacity:.15;"></div>
+<div class="glow-a" style="top:400px; right:-150px; width:600px; height:600px; background:#B44CFF; opacity:.12;"></div>
+<div class="glow-a" style="top:1400px; left:-200px; width:700px; height:700px; background:#00E5FF; opacity:.08;"></div>
+
+<!-- ============ FLOATING NAV ============ -->
+<nav class="nav">
+  <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;">
+    <div class="logo-mark">M</div>
+    <div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;line-height:1;">Mahesh Electronics</div>
+      <div style="font-size:.68rem;color:var(--muted);margin-top:2px;font-family:'Space Grotesk',sans-serif;">Valsad · Est. 1985</div>
+    </div>
+  </a>
+  <div style="display:flex;gap:2px;">
+    <a href="#drops" class="link active">Drops</a>
+    <a href="#shop" class="link">Shop</a>
+    <a href="#build" class="link">Build</a>
+    <a href="#story" class="link">Story</a>
+    <a href="#gov" class="link">Gov · GeM</a>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <div class="mode-toggle">
+      <button class="active" onclick="setMode('gamer')">🎮 Gamer</button>
+      <button onclick="setMode('pro')">💼 Pro</button>
+    </div>
+    <a href="https://wa.me/919998874634" class="btn btn-primary" style="padding:10px 16px;font-size:.82rem;">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.27 4.88L2 22l5.25-1.38C8.67 21.5 10.29 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      Order
+    </a>
+  </div>
+</nav>
+
+<!-- ============ LIVE DROPS STRIP ============ -->
+<div id="drops" class="drops-strip">
+  <a class="drop live" href="#">
+    <div class="drop-ring"><div class="drop-inner">🎮</div></div>
+    <span>PS5 · Live</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">💻</div></div>
+    <span>HP Victus</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring" style="background: conic-gradient(from 0deg, #22E373, #00E5FF, #22E373);"><div class="drop-inner">🖨</div></div>
+    <span>Canon G3010</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">📷</div></div>
+    <span>4K CCTV</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">🎧</div></div>
+    <span>Sony WH-1000</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">📡</div></div>
+    <span>D-Link WiFi 6</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">⚡</div></div>
+    <span>Deals</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">🏫</div></div>
+    <span>Smart Class</span>
+  </a>
+  <a class="drop" href="#">
+    <div class="drop-ring"><div class="drop-inner">🖥️</div></div>
+    <span>Gaming PC</span>
+  </a>
+</div>
+
+<!-- ============ BENTO HERO ============ -->
+<section class="bento">
+  <!-- Hero -->
+  <div class="cell cell-big">
+    <div>
+      <div class="live-pill"><span class="dot"></span>Rajesh online · replies in ~3 min</div>
+    </div>
+    <div>
+      <h1>Valsad's<br>Tech OG<br>Since 1985.</h1>
+      <p style="color:var(--muted); max-width: 440px; margin-top:18px; font-size:1.02rem; line-height:1.6;">
+        From radios → cassettes → software → laptops → PS5. 40 years. 18+ brands. One store.
+      </p>
+      <div style="display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;">
+        <a href="#shop" class="btn btn-primary">Shop the Drop →</a>
+        <a href="https://wa.me/919998874634" class="btn btn-ghost">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gaming Zone -->
+  <div class="cell cell-neon cell-hero" style="justify-content:flex-start;">
+    <div class="cell-label" style="color:#C77DFF;">🎮 Gaming Zone</div>
+    <div>
+      <div class="cell-title" style="font-size:1.4rem;">PS5 In Stock</div>
+      <div class="cell-sub">Plus controllers, games & accessories. Valsad's only authorized PlayStation hub.</div>
+    </div>
+    <div class="chip chip-new">🆕 Just Dropped</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="cell cell-orange cell-med">
+    <div class="cell-label" style="color:rgba(10,10,15,.6);">Est.</div>
+    <div class="cell-num">1985</div>
+  </div>
+  <div class="cell cell-med">
+    <div class="cell-label">Years</div>
+    <div class="cell-num" style="color:#FFB547;">40+</div>
+  </div>
+
+  <!-- Store tour card -->
+  <div class="cell cell-wide" style="background: linear-gradient(135deg,#0F1A3D 0%, #003580 100%); border-color: rgba(0,87,184,.3); cursor:pointer;">
+    <div style="display:flex; align-items:center; gap:14px; height:100%;">
+      <div style="width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🎥</div>
+      <div style="flex:1;">
+        <div class="cell-label" style="color:rgba(255,255,255,.6);">Experience</div>
+        <div class="cell-title" style="color:white;">Virtual Store Tour</div>
+        <div class="cell-sub" style="color:rgba(255,255,255,.65);">Walk through the Canon PIXMA Zone, gaming corner & showroom.</div>
+      </div>
+      <div style="color:white;font-size:1.2rem;">→</div>
+    </div>
+  </div>
+
+  <!-- GeM -->
+  <div class="cell cell-green cell-med" style="justify-content:flex-start;">
+    <div class="cell-label" style="color:rgba(255,255,255,.7);">🏛 Authorized</div>
+    <div style="margin-top:auto;">
+      <div class="cell-title" style="color:white;">GeM Seller</div>
+      <div class="cell-sub" style="color:rgba(255,255,255,.75);">Govt procurement ready.</div>
+    </div>
+  </div>
+
+  <!-- Brands -->
+  <div class="cell cell-med" style="justify-content:flex-start;">
+    <div class="cell-label">Authorized for</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+      <span class="chip">HP</span><span class="chip">Canon</span><span class="chip">Lenovo</span>
+      <span class="chip">Hikvision</span><span class="chip">D-Link</span><span class="chip">Epson</span>
+      <span class="chip">Asus</span><span class="chip">Sony</span><span class="chip">+10</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS — BENTO ============ -->
+<section id="shop" class="block">
+  <div class="eyebrow">⚡ Shop the Store</div>
+  <h2 class="h-section">Everything you need.<br><span style="background:linear-gradient(135deg,#FF6B2C,#B44CFF);-webkit-background-clip:text;background-clip:text;color:transparent;">In one Valsad shop.</span></h2>
+  <p class="p-section">Swipe, tap, or just walk in. We stock 18+ global brands and we'll match any online price — GST bill included.</p>
+
+  <div class="product-bento">
+    <!-- Featured Gaming card -->
+    <div class="pcard featured gaming">
+      <div class="chip chip-hot" style="align-self:flex-start;">🔥 Most Loved</div>
+      <div class="pcard-img" style="background: radial-gradient(circle at 50% 50%, rgba(180,76,255,.3), transparent 70%), linear-gradient(135deg,#0A0A16,#1F0F3A); height: 280px;">
+        <div style="font-size:6rem;">🎮</div>
+      </div>
+      <div>
+        <div class="pcard-name">Gaming / PlayStation 5</div>
+        <div class="pcard-desc" style="margin:6px 0 14px;">The Valsad gaming HQ since the PS2 era. PS5 console, DualSense controllers, latest games, HDMI 2.1 displays, and gaming laptops — HP Victus, Asus TUF, Lenovo LOQ.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="chip">PS5</span><span class="chip">Gaming Laptops</span><span class="chip">Accessories</span>
+        </div>
+        <a href="https://wa.me/919998874634?text=Hi%2C+interested+in+gaming" class="btn btn-primary" style="margin-top:16px;">Talk to Rajesh →</a>
+      </div>
+    </div>
+
+    <!-- Laptops -->
+    <div class="pcard">
+      <div class="pcard-img"><span>💻</span></div>
+      <div class="pcard-name">Laptops</div>
+      <div class="pcard-desc">HP · Lenovo · Dell · Asus</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span><span class="chip">EMI</span></div>
+    </div>
+
+    <!-- Printers -->
+    <div class="pcard">
+      <div class="pcard-img"><span>🖨</span></div>
+      <div class="pcard-name">Printers</div>
+      <div class="pcard-desc">Canon PIXMA Zone · Epson · HP · Brother</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span></div>
+    </div>
+
+    <!-- CCTV -->
+    <div class="pcard">
+      <div class="pcard-img" style="background: linear-gradient(135deg,#1F2937,#111827);"><span>📷</span></div>
+      <div class="pcard-name">CCTV · 4K Security</div>
+      <div class="pcard-desc">Hikvision kits, NVR, AI motion</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span><span class="chip">Install</span></div>
+    </div>
+
+    <!-- Networking -->
+    <div class="pcard">
+      <div class="pcard-img"><span>📡</span></div>
+      <div class="pcard-name">Networking · WiFi 6</div>
+      <div class="pcard-desc">D-Link · TP-Link · routers & switches</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span></div>
+    </div>
+
+    <!-- Projectors -->
+    <div class="pcard">
+      <div class="pcard-img"><span>📽️</span></div>
+      <div class="pcard-name">Projectors</div>
+      <div class="pcard-desc">Home theatre · Office · Smart Class</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span></div>
+    </div>
+
+    <!-- Desktops -->
+    <div class="pcard">
+      <div class="pcard-img"><span>🖥️</span></div>
+      <div class="pcard-name">Desktops · Custom PC</div>
+      <div class="pcard-desc">Pre-built & custom build for work/gaming</div>
+      <div style="display:flex;gap:6px;"><span class="chip">Custom Build</span></div>
+    </div>
+
+    <!-- Smart Class -->
+    <div class="pcard">
+      <div class="pcard-img" style="background: linear-gradient(135deg,#0F3D2C,#17171F);"><span>🏫</span></div>
+      <div class="pcard-name">Smart Class · 3D</div>
+      <div class="pcard-desc">Interactive boards · 3D printers · IT</div>
+      <div style="display:flex;gap:6px;"><span class="chip chip-gem">✓ GeM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BUILD MY SETUP QUIZ ============ -->
+<section id="build" class="block">
+  <div class="quiz">
+    <div class="eyebrow" style="background:rgba(180,76,255,.1);border-color:rgba(180,76,255,.25);color:#C77DFF;">⚙️ Interactive</div>
+    <h2 class="h-section" style="max-width:700px;">Not sure what to buy?<br>We'll build your setup in 30 seconds.</h2>
+    <p class="p-section" style="margin-bottom:32px;">Answer 3 quick questions — we'll recommend the perfect bundle and send it to WhatsApp, so Rajesh can confirm the price.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px;">
+      <div class="quiz-option"><span class="opt-icon">👨‍🎓</span>Student · ₹30-50k budget</div>
+      <div class="quiz-option"><span class="opt-icon">💼</span>Professional · WFH setup</div>
+      <div class="quiz-option"><span class="opt-icon">🎮</span>Gamer · Performance first</div>
+      <div class="quiz-option"><span class="opt-icon">🏢</span>Office · Bulk 10+ PCs</div>
+      <div class="quiz-option"><span class="opt-icon">🏛</span>Government · GeM procurement</div>
+      <div class="quiz-option"><span class="opt-icon">🏫</span>School · Computer lab</div>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <button class="btn btn-primary">Start Quiz →</button>
+      <span style="color:var(--muted);font-size:.85rem;">Takes 30 seconds · 100% free</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY HORIZONTAL ============ -->
+<section id="story" class="block" style="padding-left:0;padding-right:0;max-width:none;">
+  <div style="max-width:1240px;margin:0 auto;padding:0 20px;">
+    <div class="eyebrow">🎞 Our Story</div>
+    <h2 class="h-section">40 years of being first.<br>In Valsad. Since 1985.</h2>
+    <p class="p-section">We were the first to bring cassettes, CDs, software, gaming, and Wi-Fi to Valsad. Swipe the timeline →</p>
+  </div>
+  <div class="journey-scroll">
+    <div class="journey-track">
+      <div class="era">
+        <div class="era-icon">📻</div>
+        <div class="era-year">1985</div>
+        <div class="era-title">The Beginning</div>
+        <div class="era-desc">Mahesh Gajarani opens shop on Halar Road selling radios and basic electronics.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">📼</div>
+        <div class="era-year">Late 80s</div>
+        <div class="era-title">Cassette Era</div>
+        <div class="era-desc">First Valsad store to stock a full range of audio cassettes and decks.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">💿</div>
+        <div class="era-year">1990s</div>
+        <div class="era-title">CDs, DVDs, Software</div>
+        <div class="era-desc">Brings CDs, DVDs, pen drives and original software to South Gujarat — a first.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">🖥️</div>
+        <div class="era-year">Late 90s</div>
+        <div class="era-title">IT Hardware Pioneer</div>
+        <div class="era-desc">First authorized dealer for D-Link & Asus in Valsad. Computers arrive in town.</div>
+      </div>
+      <div class="era highlight">
+        <div class="era-icon">🎮</div>
+        <div class="era-year">2000s</div>
+        <div class="era-title">Gaming Arrives</div>
+        <div class="era-desc">PlayStation, PC games, and the first gaming hub in South Gujarat.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">📷</div>
+        <div class="era-year">2010s</div>
+        <div class="era-title">CCTV · Smart Class</div>
+        <div class="era-desc">Networking, CCTV systems, projectors, and Smart Class solutions.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">🏛</div>
+        <div class="era-year">2020</div>
+        <div class="era-title">GeM Authorized</div>
+        <div class="era-desc">Government e-Marketplace seller. Schools, hospitals, Panchayats become clients.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">🖨</div>
+        <div class="era-year">2023</div>
+        <div class="era-title">Canon PIXMA Zone</div>
+        <div class="era-desc">Official Canon PIXMA Zone partner — the only authorized experience centre in Valsad.</div>
+      </div>
+      <div class="era">
+        <div class="era-icon">🚀</div>
+        <div class="era-year">Today</div>
+        <div class="era-title">South Gujarat's IT Hub</div>
+        <div class="era-desc">18+ authorized brands, 3D printers, Smart Class, PS5, Govt tenders — one store.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM REELS ============ -->
+<section class="block">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:24px;">
+    <div>
+      <div class="eyebrow">📸 Follow @mahesh_electronics</div>
+      <h2 class="h-section">The store IRL.</h2>
+      <p class="p-section">New arrivals, unboxings, customer setups, PS5 drops — all live on Instagram.</p>
+    </div>
+    <a href="https://instagram.com/mahesh_electronics" class="btn btn-ghost">Follow on Instagram ↗</a>
+  </div>
+  <div class="reels-grid">
+    <div class="reel" style="background: linear-gradient(135deg, #6B0F8A, #B44CFF);">
+      <div class="reel-play">▶ 2.4k</div>
+      <div class="reel-emoji">🎮</div>
+      <div class="reel-label">PS5 unboxing</div>
+    </div>
+    <div class="reel" style="background: linear-gradient(135deg, #0F3D6B, #1DB3E8);">
+      <div class="reel-play">▶ 1.1k</div>
+      <div class="reel-emoji">💻</div>
+      <div class="reel-label">HP Victus review</div>
+    </div>
+    <div class="reel" style="background: linear-gradient(135deg, #FF6B2C, #FFB547);">
+      <div class="reel-play">▶ 890</div>
+      <div class="reel-emoji">🖨</div>
+      <div class="reel-label">Canon PIXMA Zone tour</div>
+    </div>
+    <div class="reel" style="background: linear-gradient(135deg, #0F3D2C, #22E373);">
+      <div class="reel-play">▶ 1.8k</div>
+      <div class="reel-emoji">📷</div>
+      <div class="reel-label">4K CCTV setup</div>
+    </div>
+    <div class="reel" style="background: linear-gradient(135deg, #2B2B3A, #111118);">
+      <div class="reel-play">▶ 620</div>
+      <div class="reel-emoji">🏫</div>
+      <div class="reel-label">Smart Class install</div>
+    </div>
+    <div class="reel" style="background: linear-gradient(135deg, #B44CFF, #FF6B2C);">
+      <div class="reel-play">▶ 3.2k</div>
+      <div class="reel-emoji">⚡</div>
+      <div class="reel-label">Gaming PC build</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="block">
+  <div class="eyebrow">💬 Real Reviews</div>
+  <h2 class="h-section">Valsad's doctors, architects & schools.<br><span style="color:var(--muted);font-weight:600;">All in one shop.</span></h2>
+
+  <div class="tg" style="margin-top:32px;">
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"My clinic's IT is 100% Mahesh Electronics. 15+ years. Never had a billing or service issue. Rajesh picks up every time."</div>
+      <div class="tauthor">
+        <div class="tavatar">Dr</div>
+        <div>
+          <div style="font-weight:600;font-size:.9rem;">Dr. Prakash Shah</div>
+          <div style="color:var(--muted);font-size:.78rem;">Physician · Valsad</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard" style="border-color: rgba(180,76,255,.3);">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"Built my whole studio setup here — Lenovo workstation, Canon printer, dual monitors. Genuine warranty, bill in 10 min."</div>
+      <div class="tauthor">
+        <div class="tavatar" style="background:linear-gradient(135deg,#B44CFF,#00E5FF);">A</div>
+        <div>
+          <div style="font-weight:600;font-size:.9rem;">Ankit Mehta</div>
+          <div style="color:var(--muted);font-size:.78rem;">Architect · Valsad</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tstars">★★★★★</div>
+      <div class="tquote">"Our 40-PC school lab via GeM — installed, configured, running. Same-week delivery. Exactly what the brochure promised."</div>
+      <div class="tauthor">
+        <div class="tavatar" style="background:linear-gradient(135deg,#22E373,#00E5FF);">P</div>
+        <div>
+          <div style="font-weight:600;font-size:.9rem;">Priya Desai</div>
+          <div style="color:var(--muted);font-size:.78rem;">School Principal · Navsari</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="block">
+  <div class="final-cta">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;opacity:.9;">📍 Shop No. 2, Halar Road · Opp. Post Office · Valsad</div>
+    <h2 style="font-size:clamp(2rem,5vw,4rem);margin:20px 0;">Walk in. Call. WhatsApp.<br>Whatever works.</h2>
+    <p style="max-width:560px;margin:0 auto;opacity:.9;font-size:1.05rem;">Rajesh: 99988 74634 · Jeetesh: 74052 25570 · maheshelectronics@yahoo.com</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap;">
+      <a href="https://wa.me/919998874634" class="btn btn-wa">💬 WhatsApp Now</a>
+      <a href="tel:9998874634" class="btn btn-ghost" style="background:rgba(255,255,255,.15);color:white;border-color:rgba(255,255,255,.3);">📞 Call Rajesh</a>
+      <a href="#" class="btn btn-ghost" style="background:rgba(255,255,255,.15);color:white;border-color:rgba(255,255,255,.3);">📍 Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-foot">
+  <div class="foot-wrap">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div class="logo-mark">M</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;">Mahesh Electronics</div>
+          <div style="font-size:.74rem;color:var(--muted);font-family:'Space Grotesk',sans-serif;">Valsad · Est. 1985</div>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:.88rem;line-height:1.6;max-width:320px;">Valsad's tech OG since 1985. 40+ years of always being first — from radios to PS5. 18+ authorized brands. GeM authorized.</p>
+    </div>
+    <div>
+      <div class="foot-title">Shop</div>
+      <a class="foot-link" href="#">Laptops</a>
+      <a class="foot-link" href="#">Gaming / PS5</a>
+      <a class="foot-link" href="#">Printers</a>
+      <a class="foot-link" href="#">CCTV</a>
+      <a class="foot-link" href="#">Networking</a>
+      <a class="foot-link" href="#">Smart Class</a>
+    </div>
+    <div>
+      <div class="foot-title">Company</div>
+      <a class="foot-link" href="#">Our Story</a>
+      <a class="foot-link" href="#">GeM / Govt</a>
+      <a class="foot-link" href="#">Blog</a>
+      <a class="foot-link" href="#">Reviews</a>
+      <a class="foot-link" href="#">Contact</a>
+    </div>
+    <div>
+      <div class="foot-title">Visit / Contact</div>
+      <p style="color:var(--muted);font-size:.85rem;line-height:1.7;margin:0;">Shop No. 2, Sai Baba Appt.<br>Opp. Main Post Office<br>Halar Road, Valsad – 396 001</p>
+      <p style="color:var(--muted);font-size:.85rem;margin-top:10px;">📞 99988 74634 / 74052 25570<br>📧 maheshelectronics@yahoo.com<br>📸 @mahesh_electronics</p>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:40px auto 0;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:.78rem;">
+    <div>© 2026 Mahesh Electronics · Valsad, Gujarat</div>
+    <div>Made with ❤ in Valsad</div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WA WIDGET ============ -->
+<div class="wa-widget">
+  <div class="wa-status-bubble">
+    <div class="wa-avatar">R</div>
+    <div>
+      <div style="font-weight:600;font-size:.85rem;">Rajesh · Mahesh Electronics</div>
+      <div style="color:var(--muted);font-size:.72rem;"><span style="color:#22E373;">●</span> Online · replies in ~3 min</div>
+    </div>
+  </div>
+  <a href="https://wa.me/919998874634" class="wa-float-btn">
+    <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.43 1.27 4.88L2 22l5.25-1.38C8.67 21.5 10.29 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+  </a>
+</div>
+
+<!-- ============ CMD-K HINT ============ -->
+<div class="command-hint">Press <span class="kbd">⌘</span><span class="kbd">K</span> to search products</div>
+
+<script>
+  // Mode toggle — Gamer vs Pro
+  function setMode(mode) {
+    const btns = document.querySelectorAll('.mode-toggle button');
+    btns.forEach(b => b.classList.remove('active'));
+    if (mode === 'pro') {
+      document.documentElement.classList.add('pro');
+      btns[1].classList.add('active');
+    } else {
+      document.documentElement.classList.remove('pro');
+      btns[0].classList.add('active');
+    }
+  }
+
+  // 3D tilt on cards
+  document.querySelectorAll('.pcard, .cell').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - .5) * 10;
+      const y = ((e.clientY - r.top) / r.height - .5) * -10;
+      card.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Quiz option clicks
+  document.querySelectorAll('.quiz-option').forEach(o => {
+    o.addEventListener('click', () => {
+      const text = o.textContent.trim();
+      const msg = encodeURIComponent(`Hi Rajesh, I'm looking for a ${text} setup. Can you recommend?`);
+      window.open(`https://wa.me/919998874634?text=${msg}`, '_blank');
+    });
+  });
+</script>
+
+</body>
+</html>

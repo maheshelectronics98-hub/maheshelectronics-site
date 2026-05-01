@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8 / Playful Pop — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFBF2;--ink:#1A1033;--muted:#6B6280;--p1:#FFD23F;--p2:#FF6B9D;--p3:#00D4AA;--p4:#6B5BFF;--p5:#FF8947;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',sans-serif;overflow-x:hidden}
+h1,h2,h3{font-weight:900;letter-spacing:-.02em;line-height:1.05}
+/* Switcher */
+.switcher{background:#0A0A0F;padding:10px 20px;display:flex;justify-content:center;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:100}
+.switcher a{font-size:.78rem;font-weight:700;color:#888;text-decoration:none;padding:8px 14px;border-radius:100px;white-space:nowrap}
+.switcher a.active{background:var(--p2);color:white}
+.switcher a:hover:not(.active){color:white}
+/* Nav */
+.nav{max-width:1280px;margin:20px auto 0;padding:14px 22px;background:white;border:3px solid var(--ink);border-radius:100px;display:flex;justify-content:space-between;align-items:center;box-shadow:6px 6px 0 var(--ink);position:sticky;top:60px;z-index:90}
+.logo{font-weight:900;font-size:1.2rem}
+.logo .dot{display:inline-block;width:10px;height:10px;background:var(--p2);border-radius:50%;margin:0 3px}
+.nav ul{list-style:none;display:flex;gap:22px}
+.nav ul a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem}
+.nav .cta{background:var(--p3);color:var(--ink);padding:10px 20px;border-radius:100px;text-decoration:none;font-weight:800;font-size:.88rem;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.nav .cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+/* Hero */
+.hero{max-width:1280px;margin:40px auto;padding:0 22px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative}
+.hero::before{content:"✨";position:absolute;top:-20px;left:40%;font-size:2.4rem;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bubble{display:inline-flex;align-items:center;gap:8px;background:var(--p1);border:2px solid var(--ink);padding:6px 16px;border-radius:100px;font-weight:800;font-size:.82rem;margin-bottom:20px;box-shadow:3px 3px 0 var(--ink)}
+.hero h1{font-size:clamp(2.8rem,6.5vw,5.2rem)}
+.hero h1 .u1{background:var(--p2);color:white;padding:0 14px;border-radius:16px;display:inline-block;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--ink)}
+.hero h1 .u2{background:var(--p3);color:var(--ink);padding:0 14px;border-radius:16px;display:inline-block;transform:rotate(1.5deg);box-shadow:4px 4px 0 var(--ink)}
+.hero p.lede{font-size:1.15rem;color:var(--muted);margin-top:22px;max-width:500px;line-height:1.5}
+.btn-row{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 24px;border-radius:100px;font-weight:800;font-size:.95rem;text-decoration:none;border:2.5px solid var(--ink);transition:all .15s}
+.btn-p{background:var(--p2);color:white;box-shadow:5px 5px 0 var(--ink)}
+.btn-p:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn-g{background:white;color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn-g:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+/* Hero visual stack */
+.hero-visual{position:relative;height:440px}
+.blob{position:absolute;border:3px solid var(--ink);border-radius:36px;display:flex;align-items:center;justify-content:center;font-size:5rem;box-shadow:6px 6px 0 var(--ink)}
+.blob.b1{top:0;left:0;width:60%;height:60%;background:var(--p4);transform:rotate(-4deg)}
+.blob.b2{top:10%;right:0;width:45%;height:50%;background:var(--p1);transform:rotate(5deg);font-size:4rem}
+.blob.b3{bottom:0;left:15%;width:55%;height:45%;background:var(--p3);transform:rotate(-2deg);font-size:4rem}
+/* Stats */
+.stats{max-width:1280px;margin:20px auto 60px;padding:0 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:white;border:3px solid var(--ink);border-radius:24px;padding:22px;box-shadow:5px 5px 0 var(--ink);text-align:center}
+.stat .n{font-size:2.2rem;font-weight:900;line-height:1}
+.stat .l{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:700}
+.stat:nth-child(1){background:var(--p1)}
+.stat:nth-child(2){background:var(--p2);color:white}
+.stat:nth-child(3){background:var(--p3)}
+.stat:nth-child(4){background:var(--p5);color:white}
+/* Products */
+.prods{max-width:1280px;margin:40px auto 80px;padding:0 22px}
+.prods h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:8px}
+.prods .sub{color:var(--muted);font-weight:600;margin-bottom:28px}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prod{background:white;border:3px solid var(--ink);border-radius:24px;padding:16px;box-shadow:5px 5px 0 var(--ink);transition:all .15s;text-decoration:none;color:inherit}
+.prod:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
+.prod-img{aspect-ratio:1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:4rem;border:2px solid var(--ink);margin-bottom:14px}
+.prod:nth-child(1) .prod-img{background:var(--p4);color:white}
+.prod:nth-child(2) .prod-img{background:var(--p1)}
+.prod:nth-child(3) .prod-img{background:var(--p3)}
+.prod:nth-child(4) .prod-img{background:var(--p5);color:white}
+.prod h3{font-size:1.1rem}
+.prod p{color:var(--muted);font-size:.82rem;margin-top:4px;font-weight:600}
+.prod .tag{display:inline-block;background:var(--ink);color:white;padding:3px 10px;border-radius:100px;font-size:.72rem;font-weight:800;margin-top:10px}
+@media(max-width:780px){.hero{grid-template-columns:1fr}.hero-visual{height:280px}.stats,.prod-grid{grid-template-columns:repeat(2,1fr)}.nav ul{display:none}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">← All</a>
+  <a href="1-tech-og.html">1·Tech</a>
+  <a href="2-street-drop.html">2·Drop</a>
+  <a href="3-editorial.html">3·Editorial</a>
+  <a href="4-glass.html">4·Glass</a>
+  <a href="5-retro.html">5·Retro</a>
+  <a href="6-epson-corporate.html">6·Corporate</a>
+  <a href="7-showroom.html">7·Showroom</a>
+  <a href="8-playful.html" class="active">8·Playful</a>
+</div>
+
+<nav class="nav">
+  <div class="logo">Mahesh<span class="dot"></span>Electronics</div>
+  <ul><li><a href="#">Shop</a></li><li><a href="#">Gaming</a></li><li><a href="#">Govt</a></li><li><a href="#">Blog</a></li></ul>
+  <a href="#" class="cta">WhatsApp 💬</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <span class="bubble">🎉 Valsad's favourite since 1985</span>
+    <h1>Tech that <span class="u1">works</span>,<br>service that <span class="u2">smiles</span>.</h1>
+    <p class="lede">40 years, 18+ brands, one very friendly shop on Halar Road. From your first printer to your kid's PS5 — we've been there.</p>
+    <div class="btn-row"><a href="#" class="btn btn-p">Shop now →</a><a href="#" class="btn btn-g">💬 Say hi</a></div>
+  </div>
+  <div class="hero-visual">
+    <div class="blob b1">💻</div>
+    <div class="blob b2">🎮</div>
+    <div class="blob b3">🖨</div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><div class="n">40+</div><div class="l">years strong</div></div>
+  <div class="stat"><div class="n">18+</div><div class="l">brands</div></div>
+  <div class="stat"><div class="n">GeM</div><div class="l">authorized</div></div>
+  <div class="stat"><div class="n">1985</div><div class="l">since</div></div>
+</section>
+
+<section class="prods">
+  <h2>Pick your thing.</h2>
+  <p class="sub">Everything you need, nothing you don't.</p>
+  <div class="prod-grid">
+    <a class="prod"><div class="prod-img">🎮</div><h3>PS5 Gaming</h3><p>Consoles, controllers, games</p><span class="tag">🔥 Hot</span></a>
+    <a class="prod"><div class="prod-img">💻</div><h3>Laptops</h3><p>HP · Lenovo · Dell · Asus</p><span class="tag">✓ GeM</span></a>
+    <a class="prod"><div class="prod-img">🖨</div><h3>Printers</h3><p>Canon PIXMA Zone · Epson</p><span class="tag">✓ GeM</span></a>
+    <a class="prod"><div class="prod-img">📷</div><h3>CCTV 4K</h3><p>Hikvision · install · AMC</p><span class="tag">✓ GeM</span></a>
+  </div>
+</section>
+
+</body></html>

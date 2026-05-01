@@ -1,0 +1,10 @@
+node_modules/
+# DB IS committed (GitHub Actions persists scrape state across runs).
+# Local journal/WAL files don't need to be committed though.
+mahesh.db-journal
+mahesh.db-wal
+mahesh.db-shm
+.env
+logs/*.json
+logs/*.log
+discovery/

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 / Epson Corporate — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#005CB9;--brand:#003580;--accent:#EE0000;--ink:#1A1A1A;--muted:#5E6A75;--bg:#FFFFFF;--soft:#F4F6F9;--border:#E5E8ED;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans',sans-serif;font-size:15px;line-height:1.55}
+h1,h2,h3{font-weight:800;letter-spacing:-.015em;line-height:1.15}
+/* Switcher */
+.switcher{background:#0A0A0F;padding:10px 20px;display:flex;justify-content:center;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:100}
+.switcher a{font-size:.78rem;font-weight:600;color:#888;text-decoration:none;padding:8px 14px;border-radius:100px;white-space:nowrap}
+.switcher a.active{background:var(--accent);color:white}
+.switcher a:hover:not(.active){color:white}
+/* Topbar */
+.topbar{background:var(--soft);border-bottom:1px solid var(--border);padding:8px 0;font-size:.78rem;color:var(--muted)}
+.topbar .inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between}
+.topbar a{color:var(--muted);text-decoration:none;margin-left:18px}
+.topbar a:hover{color:var(--accent)}
+/* Nav */
+.nav{border-bottom:1px solid var(--border);background:white;position:sticky;top:44px;z-index:90}
+.nav .inner{max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.35rem;font-weight:800;color:var(--brand);letter-spacing:-.02em}
+.logo .r{color:var(--accent)}
+.nav ul{list-style:none;display:flex;gap:28px}
+.nav ul a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.92rem}
+.nav ul a:hover{color:var(--accent)}
+.nav .cta{background:var(--accent);color:white;padding:10px 18px;border-radius:4px;text-decoration:none;font-weight:600;font-size:.88rem}
+/* Hero */
+.hero{background:linear-gradient(135deg,#F4F6F9 0%,#E8EEF6 100%);padding:70px 24px;border-bottom:4px solid var(--accent)}
+.hero .inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.hero .eye{display:inline-block;background:var(--accent);color:white;padding:5px 12px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.4rem)}
+.hero h1 .accent{color:var(--accent)}
+.hero p.lede{color:var(--muted);font-size:1.05rem;margin-top:18px;max-width:500px}
+.hero-meta{display:flex;gap:30px;margin-top:28px;padding-top:22px;border-top:1px solid #D0D8E2}
+.hero-meta div{font-size:.82rem;color:var(--muted)}
+.hero-meta strong{display:block;color:var(--brand);font-size:1.6rem;font-weight:800}
+.btn-row{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 24px;border-radius:4px;font-weight:600;font-size:.92rem;text-decoration:none;transition:all .2s}
+.btn-p{background:var(--accent);color:white}
+.btn-p:hover{background:#C20000}
+.btn-g{background:white;color:var(--brand);border:1px solid var(--brand)}
+.btn-g:hover{background:var(--brand);color:white}
+.hero-visual{background:white;border-radius:8px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:8rem;box-shadow:0 20px 60px rgba(0,53,128,.12);border:1px solid var(--border)}
+/* Category band */
+.cats{padding:70px 24px;max-width:1280px;margin:0 auto}
+.cats-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px;padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.cats-head h2{font-size:2rem}
+.cats-head a{color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat{background:white;border:1px solid var(--border);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;transition:all .25s;display:flex;flex-direction:column}
+.cat:hover{box-shadow:0 12px 32px rgba(0,0,0,.08);transform:translateY(-3px);border-color:var(--brand)}
+.cat-img{aspect-ratio:4/3;background:linear-gradient(180deg,#FFFFFF 60%,#F4F6F9);display:flex;align-items:center;justify-content:center;font-size:4.5rem;border-bottom:1px solid var(--border)}
+.cat-body{padding:20px}
+.cat h3{font-size:1.05rem;margin-bottom:6px}
+.cat p{color:var(--muted);font-size:.85rem;min-height:40px}
+.cat .know{color:var(--accent);font-weight:600;font-size:.85rem;margin-top:10px;display:inline-block}
+.cat .know::after{content:" ›";font-size:1.1rem}
+.cat .gem{display:inline-block;background:#E8F5EC;color:#0A7D3B;font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:3px;margin-top:8px}
+/* Tech strip */
+.tech{background:var(--soft);padding:60px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.tech .inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.tech-item{text-align:center}
+.tech-icon{width:64px;height:64px;border-radius:50%;background:white;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 14px}
+.tech-item h4{font-size:1rem;margin-bottom:6px}
+.tech-item p{font-size:.85rem;color:var(--muted)}
+@media(max-width:780px){.hero .inner{grid-template-columns:1fr}.cat-grid{grid-template-columns:repeat(2,1fr)}.tech .inner{grid-template-columns:repeat(2,1fr)}.nav ul{display:none}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">← All</a>
+  <a href="1-tech-og.html">1·Tech</a>
+  <a href="2-street-drop.html">2·Drop</a>
+  <a href="3-editorial.html">3·Editorial</a>
+  <a href="4-glass.html">4·Glass</a>
+  <a href="5-retro.html">5·Retro</a>
+  <a href="6-epson-corporate.html" class="active">6·Corporate</a>
+  <a href="7-showroom.html">7·Showroom</a>
+  <a href="8-playful.html">8·Playful</a>
+</div>
+
+<div class="topbar"><div class="inner">
+  <span>📍 Halar Road, Valsad · Open 10 AM – 9 PM</span>
+  <span><a href="#">Support</a><a href="#">GeM Orders</a><a href="#">Track Order</a><a href="#">Contact</a></span>
+</div></div>
+
+<nav class="nav"><div class="inner">
+  <div class="logo">Mahesh<span class="r">·</span>Electronics</div>
+  <ul><li><a href="#">Products</a></li><li><a href="#">Gaming</a></li><li><a href="#">Government / GeM</a></li><li><a href="#">Support</a></li><li><a href="#">About</a></li></ul>
+  <a href="#" class="cta">WhatsApp Us</a>
+</div></nav>
+
+<section class="hero"><div class="inner">
+  <div>
+    <span class="eye">Est. 1985 · Valsad</span>
+    <h1>Valsad's most trusted <span class="accent">IT & Electronics</span> store.</h1>
+    <p class="lede">Authorized partner for HP, Canon, Lenovo, Hikvision, D-Link, Epson and 12 more. GeM-registered for government procurement. 40 years on Halar Road.</p>
+    <div class="hero-meta">
+      <div><strong>40+</strong>Years</div>
+      <div><strong>18+</strong>Brands</div>
+      <div><strong>GeM</strong>Authorized</div>
+    </div>
+    <div class="btn-row">
+      <a href="#" class="btn btn-p">Explore Products ›</a>
+      <a href="#" class="btn btn-g">Request a Quote</a>
+    </div>
+  </div>
+  <div class="hero-visual">🖨</div>
+</div></section>
+
+<section class="cats">
+  <div class="cats-head"><h2>Shop by Category</h2><a href="#">View all categories ›</a></div>
+  <div class="cat-grid">
+    <a class="cat"><div class="cat-img">💻</div><div class="cat-body"><h3>Laptops & Desktops</h3><p>HP · Lenovo · Dell · Asus</p><span class="gem">✓ GeM Available</span><br><span class="know">Know more</span></div></a>
+    <a class="cat"><div class="cat-img">🖨</div><div class="cat-body"><h3>Printers</h3><p>Canon PIXMA Zone · Epson · HP · Brother</p><span class="gem">✓ GeM Available</span><br><span class="know">Know more</span></div></a>
+    <a class="cat"><div class="cat-img">📷</div><div class="cat-body"><h3>CCTV & Security</h3><p>Hikvision 4K · NVR · Installation</p><span class="gem">✓ GeM Available</span><br><span class="know">Know more</span></div></a>
+    <a class="cat"><div class="cat-img">🎮</div><div class="cat-body"><h3>Gaming</h3><p>PS5 · Gaming Laptops · Accessories</p><br><span class="know">Know more</span></div></a>
+  </div>
+</section>
+
+<section class="tech"><div class="inner">
+  <div class="tech-item"><div class="tech-icon">🏛</div><h4>GeM Authorized</h4><p>Government e-Marketplace supplier for institutions.</p></div>
+  <div class="tech-item"><div class="tech-icon">✅</div><h4>Canon PIXMA Zone</h4><p>Certified dealer of Canon's premium printer line.</p></div>
+  <div class="tech-item"><div class="tech-icon">🛠</div><h4>On-site Service</h4><p>Installation, AMC, and repairs across South Gujarat.</p></div>
+  <div class="tech-item"><div class="tech-icon">🤝</div><h4>40-Year Trust</h4><p>Valsad's loyal choice since 1985.</p></div>
+</div></section>
+
+</body></html>

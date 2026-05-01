@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 / Retro-Futurist — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B2A;--ink:#F5F5E8;--pink:#FF2D95;--cyan:#00F0FF;--yellow:#FFE600;--purple:#8B3DFF;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;min-height:100vh;
+  background-image:
+    linear-gradient(rgba(139,61,255,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(139,61,255,.1) 1px,transparent 1px);
+  background-size:40px 40px}
+.crt{font-family:'VT323',monospace}
+.pixel{font-family:'Press Start 2P',monospace}
+/* CRT scanlines overlay */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.15) 0 1px,transparent 1px 3px)}
+/* Switcher */
+.switcher{position:sticky;top:0;background:#000;border-bottom:2px solid var(--pink);padding:10px 20px;z-index:100;display:flex;justify-content:center;gap:4px;overflow-x:auto}
+.switcher a{font-family:'VT323',monospace;font-size:1rem;color:var(--cyan);text-decoration:none;padding:4px 12px;white-space:nowrap;letter-spacing:.05em}
+.switcher a.active{background:var(--pink);color:#000}
+.switcher a:hover:not(.active){color:var(--yellow)}
+/* Sun */
+.sun{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:360px;height:360px;border-radius:50%;background:linear-gradient(180deg,var(--yellow),var(--pink) 70%);box-shadow:0 0 80px rgba(255,45,149,.6);z-index:0}
+.sun::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 20px,var(--bg) 20px 26px,transparent 26px 50px,var(--bg) 50px 58px,transparent 58px 90px,var(--bg) 90px 100px);border-radius:50%;opacity:.9}
+/* Hero */
+.hero{max-width:1200px;margin:0 auto;padding:120px 24px 60px;position:relative;z-index:2;text-align:center}
+.banner{display:inline-block;background:#000;border:2px solid var(--cyan);color:var(--cyan);padding:8px 16px;font-family:'VT323',monospace;font-size:1.1rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;box-shadow:4px 4px 0 var(--pink)}
+h1.hero-h{font-family:'Press Start 2P',monospace;font-size:clamp(1.8rem,4.5vw,3.6rem);line-height:1.4;text-shadow:3px 3px 0 var(--pink),6px 6px 0 var(--purple);letter-spacing:.02em}
+h1 .c{color:var(--cyan)}h1 .y{color:var(--yellow)}
+.tag{font-family:'VT323',monospace;font-size:1.6rem;color:var(--cyan);margin-top:30px;letter-spacing:.05em}
+.tag::before{content:"> ";color:var(--yellow)}
+.tag::after{content:"█";color:var(--yellow);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.btns{margin-top:30px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 24px;font-family:'Press Start 2P',monospace;font-size:.72rem;text-decoration:none;text-transform:uppercase;border:2px solid #000;transition:transform .15s}
+.btn-p{background:var(--yellow);color:#000;box-shadow:6px 6px 0 var(--pink)}
+.btn-p:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--pink)}
+.btn-g{background:var(--cyan);color:#000;box-shadow:6px 6px 0 var(--purple)}
+.btn-g:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--purple)}
+/* Cards */
+.cards{max-width:1200px;margin:60px auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;z-index:2}
+.card{background:#11112E;border:2px solid var(--cyan);padding:18px;position:relative;box-shadow:6px 6px 0 var(--pink);transition:transform .2s}
+.card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--pink)}
+.card-img{aspect-ratio:1;background:#000;border:2px solid var(--purple);display:flex;align-items:center;justify-content:center;font-size:3.6rem;margin-bottom:14px;filter:drop-shadow(0 0 8px var(--pink))}
+.card h3{font-family:'Press Start 2P',monospace;font-size:.72rem;color:var(--yellow);margin-bottom:8px;line-height:1.4}
+.card p{font-family:'VT323',monospace;font-size:1.1rem;color:var(--cyan);line-height:1.3}
+.card .price{font-family:'Press Start 2P',monospace;font-size:.7rem;color:var(--pink);margin-top:10px}
+/* Ticker */
+.ticker{background:#000;border-top:2px solid var(--pink);border-bottom:2px solid var(--pink);padding:10px 0;font-family:'VT323',monospace;font-size:1.3rem;color:var(--yellow);overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-block;animation:scroll 25s linear infinite;padding-left:100%}
+@keyframes scroll{to{transform:translateX(-100%)}}
+@media(max-width:780px){.cards{grid-template-columns:repeat(2,1fr)}.sun{width:240px;height:240px;top:90px}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">&lt; ALL</a>
+  <a href="1-tech-og.html">1·TECH</a>
+  <a href="2-street-drop.html">2·DROP</a>
+  <a href="3-editorial.html">3·EDITORIAL</a>
+  <a href="4-glass.html">4·GLASS</a>
+  <a href="5-retro.html" class="active">5·RETRO</a>
+</div>
+
+<div class="sun"></div>
+
+<div class="hero">
+  <div class="banner">◆ INSERT COIN ◆ PLAYER 1 READY ◆</div>
+  <h1 class="hero-h">VALSAD'S <span class="y">TECH</span><br><span class="c">ARCADE</span><br>SINCE 1985</h1>
+  <div class="tag">40 YEARS · 18 BRANDS · LEVEL UP</div>
+  <div class="btns">
+    <a href="#" class="btn btn-p">▶ START</a>
+    <a href="#" class="btn btn-g">◆ WHATSAPP</a>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="card-img">🎮</div><h3>PS5 SLIM</h3><p>The final boss. In stock.</p><div class="price">₹54,990</div></div>
+  <div class="card"><div class="card-img">💻</div><h3>HP VICTUS</h3><p>RTX 4050. Shred frames.</p><div class="price">₹64,990</div></div>
+  <div class="card"><div class="card-img">🖨</div><h3>CANON G3</h3><p>Ink tank boss mode.</p><div class="price">₹14,990</div></div>
+  <div class="card"><div class="card-img">📷</div><h3>CCTV 4K</h3><p>All-seeing eye unlocked.</p><div class="price">₹24,990</div></div>
+</div>
+
+<div class="ticker"><div class="ticker-track">★ NEW DROP · PS5 IN STOCK · CANON PIXMA ZONE · 40 YEARS IN VALSAD · 18+ BRANDS · GEM AUTHORIZED · CALL RAJESH 9998874634 · INSERT COIN TO CONTINUE ★</div></div>
+
+</body></html>

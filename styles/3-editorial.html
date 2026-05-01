@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3 / Editorial — Mahesh Electronics</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F3;--ink:#151515;--muted:#666;--rule:#D9D4C8;--accent:#B8431A;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6}
+.serif{font-family:'Fraunces',serif}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:900;letter-spacing:-.02em;line-height:1.02}
+/* Switcher */
+.switcher{background:var(--ink);padding:10px 20px;display:flex;justify-content:center;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:100}
+.switcher a{font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;color:#999;text-decoration:none;padding:6px 12px;white-space:nowrap}
+.switcher a.active{color:var(--bg);border-bottom:2px solid var(--accent)}
+/* Masthead */
+.masthead{border-bottom:2px solid var(--ink);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;max-width:1280px;margin:0 auto}
+.masthead .logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.6rem;letter-spacing:-.02em}
+.masthead .date{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* Hero */
+.hero{max-width:1280px;margin:0 auto;padding:48px 40px;border-bottom:1px solid var(--rule)}
+.kicker{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px}
+.hero h1{font-size:clamp(3rem,7vw,6.5rem);max-width:1000px}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+.lede{font-family:'Fraunces',serif;font-size:1.4rem;line-height:1.5;max-width:680px;margin-top:28px;color:#333}
+.byline{display:flex;gap:30px;margin-top:28px;padding-top:16px;border-top:1px solid var(--rule);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* Feature grid */
+.feature{max-width:1280px;margin:0 auto;padding:48px 40px;display:grid;grid-template-columns:2fr 1fr;gap:60px;border-bottom:1px solid var(--rule)}
+.feature-main h2{font-size:2.6rem;max-width:560px;margin-bottom:24px}
+.feature-main p{font-size:1.05rem;color:#333;margin-bottom:16px;max-width:560px}
+.feature-main .dropcap::first-letter{font-family:'Fraunces',serif;font-weight:900;font-size:4.2rem;float:left;line-height:.9;margin:6px 12px 0 0;color:var(--accent)}
+.feature-side{border-left:1px solid var(--rule);padding-left:40px}
+.feature-side .kicker{margin-bottom:16px}
+.sidebar-item{padding:16px 0;border-bottom:1px dashed var(--rule)}
+.sidebar-item h4{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:4px}
+.sidebar-item span{font-size:.78rem;color:var(--muted)}
+/* Timeline */
+.timeline{max-width:1280px;margin:0 auto;padding:48px 40px}
+.timeline h2{font-size:2.4rem;margin-bottom:32px;text-align:center}
+.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.tl-item{text-align:left}
+.tl-year{font-family:'Fraunces',serif;font-weight:900;font-size:2.6rem;color:var(--accent);line-height:1}
+.tl-item h4{font-family:'Fraunces',serif;font-size:1.1rem;margin:10px 0 6px;font-weight:600}
+.tl-item p{font-size:.9rem;color:var(--muted)}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:14px 28px;font-family:'Inter',sans-serif;font-weight:600;font-size:.88rem;text-decoration:none;letter-spacing:.05em;margin-top:8px}
+.btn:hover{background:var(--accent)}
+@media(max-width:780px){.feature{grid-template-columns:1fr}.feature-side{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:30px}.tl-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head><body>
+
+<div class="switcher">
+  <a href="../compare.html">← All Styles</a>
+  <a href="1-tech-og.html">1 · Tech OG</a>
+  <a href="2-street-drop.html">2 · Street Drop</a>
+  <a href="3-editorial.html" class="active">3 · Editorial</a>
+  <a href="4-glass.html">4 · Glass</a>
+  <a href="5-retro.html">5 · Retro</a>
+</div>
+
+<header class="masthead">
+  <div class="logo">Mahesh Electronics <em style="font-weight:400;color:var(--muted)">· est. 1985</em></div>
+  <div class="date">Vol. XL · Valsad, Gujarat · 2026</div>
+</header>
+
+<section class="hero">
+  <div class="kicker">Cover Story · Issue 40</div>
+  <h1>Forty years of <em>bringing the future</em> to Valsad.</h1>
+  <p class="lede">From the first cassette player on Halar Road to South Gujarat's only PlayStation 5 hub — Mahesh Electronics has quietly authored this town's relationship with technology since 1985.</p>
+  <div class="byline"><span>By · Rajesh & Jeetesh Gajarani</span><span>Reading Time · 4 min</span><span>Est · 1985</span></div>
+  <div style="margin-top:20px"><a href="#" class="btn">Read the full journey →</a></div>
+</section>
+
+<section class="feature">
+  <div class="feature-main">
+    <div class="kicker">Feature</div>
+    <h2>One shop. Four decades. Eighteen authorized brands.</h2>
+    <p class="dropcap">When Mahesh Gajarani opened a small radio repair counter opposite Valsad's main post office in 1985, the word "laptop" didn't yet exist in most Indian homes. Forty years later, the same shop sells PlayStation 5s to Gen-Z and supplies complete government computer labs through GeM.</p>
+    <p>Today the counter carries HP, Lenovo, Dell, Canon, Hikvision, D-Link, Epson, Brother, Asus — eighteen partnerships in all — and has become the default IT answer for doctors, architects, schools and Zilla offices across South Gujarat.</p>
+  </div>
+  <aside class="feature-side">
+    <div class="kicker">In this issue</div>
+    <div class="sidebar-item"><h4>PS5 — now in Valsad</h4><span>Authorized gaming hub</span></div>
+    <div class="sidebar-item"><h4>GeM Supplier</h4><span>Government procurement</span></div>
+    <div class="sidebar-item"><h4>Canon PIXMA Zone</h4><span>Authorized dealer</span></div>
+    <div class="sidebar-item"><h4>Smart Class Solutions</h4><span>Schools across S. Gujarat</span></div>
+  </aside>
+</section>
+
+<section class="timeline">
+  <div class="kicker" style="text-align:center">The Journey</div>
+  <h2>A chronology.</h2>
+  <div class="tl-grid">
+    <div class="tl-item"><div class="tl-year">1985</div><h4>Radios & Tape</h4><p>Mahesh Gajarani founds the shop on Halar Road, opposite the main post office.</p></div>
+    <div class="tl-item"><div class="tl-year">1995</div><h4>Software Pioneer</h4><p>First store to bring packaged software to Valsad and South Gujarat.</p></div>
+    <div class="tl-item"><div class="tl-year">2010</div><h4>CCTV & Networks</h4><p>Hikvision, D-Link, full institutional deployments.</p></div>
+    <div class="tl-item"><div class="tl-year">2026</div><h4>PS5 · GeM · AI</h4><p>Gaming hub, government supplier, smart class integrator.</p></div>
+  </div>
+</section>
+
+</body></html>

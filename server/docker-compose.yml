@@ -1,0 +1,43 @@
+# Local-or-server deployment. On a VPS just `docker compose up -d`.
+# Persistent state lives in two named volumes so container rebuilds don't
+# wipe the DB or downloaded images.
+version: "3.9"
+
+services:
+  mahesh:
+    build:
+      context: ..
+      dockerfile: server/Dockerfile
+    container_name: mahesh-server
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"   # bind to localhost; Caddy fronts it
+    environment:
+      - PORT=3000
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASS=${ADMIN_PASS:-changeme}
+      - TZ=Asia/Kolkata
+    volumes:
+      - mahesh-db:/app/server/data        # mahesh.db lives here
+      - mahesh-images:/app/images/products # downloaded OEM photos
+      - ./logs:/app/server/logs
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: mahesh-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - mahesh
+
+volumes:
+  mahesh-db:
+  mahesh-images:
+  caddy-data:
+  caddy-config:

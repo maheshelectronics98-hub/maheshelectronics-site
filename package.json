@@ -1,0 +1,17 @@
+{
+  "name": "mahesh-electronics-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mahesh Electronics — static site + OEM product scraper",
+  "scripts": {
+    "scrape": "node scripts/scrape.js",
+    "scrape:hp": "node scripts/scrape.js HP",
+    "scrape:epson": "node scripts/scrape.js EPSON",
+    "scrape:all": "node scripts/scrape.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}
