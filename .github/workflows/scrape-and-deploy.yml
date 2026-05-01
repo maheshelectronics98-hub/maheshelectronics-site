@@ -46,7 +46,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # MUST be 22+ — server/db.js uses the built-in `node:sqlite` module
+          # which is stable in 24 (was experimental in 22). Local dev runs 24.
+          node-version: '24'
           cache: 'npm'
           cache-dependency-path: server/package-lock.json
 
